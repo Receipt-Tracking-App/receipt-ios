@@ -74,21 +74,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <segue destination="0xn-8H-Nr1" kind="custom" id="fW0-aM-bRt"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BOX-RP-17V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1192.753623188406" y="28.794642857142854"/>
-        </scene>
-        <!--Register-->
-        <scene sceneID="2QJ-xe-LoB">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Register" id="0xn-8H-Nr1" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Znp-TW-Vqg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1193" y="457"/>
         </scene>
         <!--Add Receipt-->
         <scene sceneID="26D-bc-kGS">

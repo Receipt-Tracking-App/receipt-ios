@@ -17,7 +17,6 @@ struct ReceiptRepresentation: Codable, Equatable {
         case notes
         case createdAt = "created_at"
         case updatedAt = "updated_at"
-        case userID = "user_id"
     }
     
     var identifier: Int64
@@ -27,5 +26,4 @@ struct ReceiptRepresentation: Codable, Equatable {
     var notes: String
     var createdAt: Date
     var updatedAt: Date
-    var userID: Int64
 }

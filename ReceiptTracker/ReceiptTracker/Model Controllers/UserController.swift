@@ -9,13 +9,6 @@
 import Foundation
 import CoreData
 
-enum HTTPMethod: String {
-    case get = "GET"
-    case put = "PUT"
-    case post = "POST"
-    case delete = "DELETE"
-}
-
 enum NetworkError: Error {
     case encodingError
     case responseError
@@ -105,6 +98,7 @@ class UserController {
             do {
                 let bearer = try JSONDecoder().decode(Token.self, from: data)
                 self.bearer = bearer
+                
             } catch {
                 completion(.badDecode)
                 return
