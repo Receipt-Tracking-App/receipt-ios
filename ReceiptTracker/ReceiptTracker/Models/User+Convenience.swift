@@ -10,29 +10,39 @@ import Foundation
 import CoreData
 
 extension User {
-    @discardableResult convenience init(name: String, username: String, password: String, identifier: Int64, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
-        
+    @discardableResult convenience init(identifier: Int64, firstName: String, lastName: String, username: String, email: String, password: String, createdAt: Date, updatedAt: Date, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         self.init(context: context)
         
-        //        self.name = name
+        self.identifier = identifier
+        self.firstName = firstName
+        self.lastName = lastName
         self.username = username
+        self.email = email
         self.password = password
-        self.userid = identifier
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
     }
     
-    @discardableResult convenience init?(userRepresentation: UserRepresentation, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
+    var userRepresentation: UserRepresentation? {
+        guard let firstName = firstName, let lastName = lastName,
+            let username = username, let email = email,
+            let password = password, let createdAt = createdAt,
+            let updatedAt = updatedAt else { return nil }
         
-        self.init(context: context)
-        
-        guard let id = userRepresentation.identifier else { return nil }
-        
-        //        self.name = name
-        self.username = username
-        self.password = password
-        self.userid = Int64(id)
+        return UserRepresentation(identifier: identifier, firstName: firstName, lastName: lastName, username: username, email: email, password: password, createdAt: createdAt, updatedAt: updatedAt)
     }
     
-    var userRepresentation: UserRepresentation {
-        return UserRepresentation(username: username, password: password, identifier: Int(userid))
+    var userLogin: UserLogin? {
+        guard let username = username, let password = password else { return nil }
+        
+        return UserLogin(username: username, password: password)
+    }
+    
+    var userSignup: UserSignup? {
+        guard let firstName = firstName, let lastName = lastName,
+            let email = email, let username = username,
+            let password = password else { return nil }
+        
+        return UserSignup(firstName: firstName, lastName: lastName, email: email, username: username, password: password)
     }
 }
