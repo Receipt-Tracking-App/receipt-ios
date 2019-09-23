@@ -11,6 +11,7 @@
 		0E50791623382023003CDFDB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E50791423382023003CDFDB /* Main.storyboard */; };
 		0E50791823382024003CDFDB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E50791723382024003CDFDB /* Assets.xcassets */; };
 		0E50791B23382024003CDFDB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E50791923382024003CDFDB /* LaunchScreen.storyboard */; };
+		0E50793B2339636E003CDFDB /* User+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50793A2339636E003CDFDB /* User+Convenience.swift */; };
 		63042CFB23392F45003EDA71 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63042CFA23392F45003EDA71 /* Register.storyboard */; };
 		634C5457233944520054183B /* ReceiptCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C5456233944520054183B /* ReceiptCollectionViewController.swift */; };
 		634C5459233944670054183B /* ReceiptCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C5458233944670054183B /* ReceiptCollectionViewCell.swift */; };
@@ -34,6 +35,7 @@
 		0E50791723382024003CDFDB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E50791A23382024003CDFDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E50791C23382024003CDFDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0E50793A2339636E003CDFDB /* User+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Convenience.swift"; sourceTree = "<group>"; };
 		63042CFA23392F45003EDA71 /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		634C5456233944520054183B /* ReceiptCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptCollectionViewController.swift; sourceTree = "<group>"; };
 		634C5458233944670054183B /* ReceiptCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			children = (
 				634C546E233948CF0054183B /* ReceiptRepresentation.swift */,
 				634C546C233948B00054183B /* Receipt+Convenience.swift */,
+				0E50793A2339636E003CDFDB /* User+Convenience.swift */,
 				634C546B2339487E0054183B /* Core Data */,
 			);
 			path = Models;
@@ -245,6 +248,7 @@
 				634C5476233953A60054183B /* Onboarding1ViewController.swift in Sources */,
 				634C547223394C230054183B /* LoginViewController.swift in Sources */,
 				634C5457233944520054183B /* ReceiptCollectionViewController.swift in Sources */,
+				0E50793B2339636E003CDFDB /* User+Convenience.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,7 +395,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = ReceiptTracker/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ReceiptTracker/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -408,7 +412,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = ReceiptTracker/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ReceiptTracker/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
