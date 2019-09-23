@@ -8,20 +8,38 @@
 
 /* Begin PBXBuildFile section */
 		0E50791123382023003CDFDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50791023382023003CDFDB /* AppDelegate.swift */; };
-		0E50791323382023003CDFDB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50791223382023003CDFDB /* ViewController.swift */; };
 		0E50791623382023003CDFDB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E50791423382023003CDFDB /* Main.storyboard */; };
 		0E50791823382024003CDFDB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E50791723382024003CDFDB /* Assets.xcassets */; };
 		0E50791B23382024003CDFDB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E50791923382024003CDFDB /* LaunchScreen.storyboard */; };
+		63042CFB23392F45003EDA71 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63042CFA23392F45003EDA71 /* Register.storyboard */; };
+		634C5457233944520054183B /* ReceiptCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C5456233944520054183B /* ReceiptCollectionViewController.swift */; };
+		634C5459233944670054183B /* ReceiptCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C5458233944670054183B /* ReceiptCollectionViewCell.swift */; };
+		634C545B233944920054183B /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C545A233944920054183B /* AddViewController.swift */; };
+		634C54602339450A0054183B /* ReceiptController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C545F2339450A0054183B /* ReceiptController.swift */; };
+		634C5467233948240054183B /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C5466233948240054183B /* CoreDataStack.swift */; };
+		634C546A233948530054183B /* ReceiptCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 634C5468233948530054183B /* ReceiptCoreData.xcdatamodeld */; };
+		634C546D233948B00054183B /* Receipt+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C546C233948B00054183B /* Receipt+Convenience.swift */; };
+		634C546F233948CF0054183B /* ReceiptRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C546E233948CF0054183B /* ReceiptRepresentation.swift */; };
+		634C547223394C230054183B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C547123394C230054183B /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0E50790D23382023003CDFDB /* ReceiptTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReceiptTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E50791023382023003CDFDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0E50791223382023003CDFDB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0E50791523382023003CDFDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0E50791723382024003CDFDB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E50791A23382024003CDFDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E50791C23382024003CDFDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63042CFA23392F45003EDA71 /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
+		634C5456233944520054183B /* ReceiptCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptCollectionViewController.swift; sourceTree = "<group>"; };
+		634C5458233944670054183B /* ReceiptCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptCollectionViewCell.swift; sourceTree = "<group>"; };
+		634C545A233944920054183B /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		634C545F2339450A0054183B /* ReceiptController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptController.swift; sourceTree = "<group>"; };
+		634C5466233948240054183B /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		634C5469233948530054183B /* ReceiptCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ReceiptCoreData.xcdatamodel; sourceTree = "<group>"; };
+		634C546C233948B00054183B /* Receipt+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Receipt+Convenience.swift"; sourceTree = "<group>"; };
+		634C546E233948CF0054183B /* ReceiptRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptRepresentation.swift; sourceTree = "<group>"; };
+		634C547123394C230054183B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +56,7 @@
 		0E50790423382022003CDFDB = {
 			isa = PBXGroup;
 			children = (
+				634C547123394C230054183B /* LoginViewController.swift */,
 				0E50790F23382023003CDFDB /* ReceiptTracker */,
 				0E50790E23382023003CDFDB /* Products */,
 			);
@@ -54,14 +73,70 @@
 		0E50790F23382023003CDFDB /* ReceiptTracker */ = {
 			isa = PBXGroup;
 			children = (
-				0E50791023382023003CDFDB /* AppDelegate.swift */,
-				0E50791223382023003CDFDB /* ViewController.swift */,
-				0E50791423382023003CDFDB /* Main.storyboard */,
-				0E50791723382024003CDFDB /* Assets.xcassets */,
-				0E50791923382024003CDFDB /* LaunchScreen.storyboard */,
-				0E50791C23382024003CDFDB /* Info.plist */,
+				634C5470233948D80054183B /* Models */,
+				634C5464233947830054183B /* Model Controllers */,
+				634C545C233944B10054183B /* View Controllers */,
+				63042CF923392F0E003EDA71 /* Storyboards */,
+				634C5465233947F60054183B /* Resources */,
 			);
 			path = ReceiptTracker;
+			sourceTree = "<group>";
+		};
+		63042CF923392F0E003EDA71 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				0E50791423382023003CDFDB /* Main.storyboard */,
+				0E50791923382024003CDFDB /* LaunchScreen.storyboard */,
+				63042CFA23392F45003EDA71 /* Register.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		634C545C233944B10054183B /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				634C545A233944920054183B /* AddViewController.swift */,
+				634C5458233944670054183B /* ReceiptCollectionViewCell.swift */,
+				634C5456233944520054183B /* ReceiptCollectionViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		634C5464233947830054183B /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				634C545F2339450A0054183B /* ReceiptController.swift */,
+			);
+			path = "Model Controllers";
+			sourceTree = "<group>";
+		};
+		634C5465233947F60054183B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0E50791723382024003CDFDB /* Assets.xcassets */,
+				0E50791023382023003CDFDB /* AppDelegate.swift */,
+				0E50791C23382024003CDFDB /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		634C546B2339487E0054183B /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				634C5468233948530054183B /* ReceiptCoreData.xcdatamodeld */,
+				634C5466233948240054183B /* CoreDataStack.swift */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		634C5470233948D80054183B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				634C546E233948CF0054183B /* ReceiptRepresentation.swift */,
+				634C546C233948B00054183B /* Receipt+Convenience.swift */,
+				634C546B2339487E0054183B /* Core Data */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,6 +200,7 @@
 				0E50791B23382024003CDFDB /* LaunchScreen.storyboard in Resources */,
 				0E50791823382024003CDFDB /* Assets.xcassets in Resources */,
 				0E50791623382023003CDFDB /* Main.storyboard in Resources */,
+				63042CFB23392F45003EDA71 /* Register.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,8 +211,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E50791323382023003CDFDB /* ViewController.swift in Sources */,
+				634C546D233948B00054183B /* Receipt+Convenience.swift in Sources */,
+				634C54602339450A0054183B /* ReceiptController.swift in Sources */,
+				634C545B233944920054183B /* AddViewController.swift in Sources */,
+				634C5459233944670054183B /* ReceiptCollectionViewCell.swift in Sources */,
+				634C546F233948CF0054183B /* ReceiptRepresentation.swift in Sources */,
+				634C546A233948530054183B /* ReceiptCoreData.xcdatamodeld in Sources */,
+				634C5467233948240054183B /* CoreDataStack.swift in Sources */,
 				0E50791123382023003CDFDB /* AppDelegate.swift in Sources */,
+				634C547223394C230054183B /* LoginViewController.swift in Sources */,
+				634C5457233944520054183B /* ReceiptCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +418,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		634C5468233948530054183B /* ReceiptCoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				634C5469233948530054183B /* ReceiptCoreData.xcdatamodel */,
+			);
+			currentVersion = 634C5469233948530054183B /* ReceiptCoreData.xcdatamodel */;
+			path = ReceiptCoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0E50790523382022003CDFDB /* Project object */;
 }
