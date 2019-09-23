@@ -33,4 +33,12 @@ extension Receipt {
         self.createdAt = receiptRepresentation.createdAt
         self.updatedAt = receiptRepresentation.updatedAt
     }
+    
+    var receiptRepresentation: ReceiptRepresentation? {
+        guard let purchaseDate = purchaseDate, let merchant = merchant,
+            let notes = notes, let createdAt = createdAt,
+            let updatedAt = updatedAt else { return nil }
+        
+        return ReceiptRepresentation(identifier: identifier, purchaseDate: purchaseDate, merchant: merchant, amount: amount, notes: notes, createdAt: createdAt, updatedAt: updatedAt)
+    }
 }
