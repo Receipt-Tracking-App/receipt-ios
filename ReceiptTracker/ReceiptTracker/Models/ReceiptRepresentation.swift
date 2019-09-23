@@ -7,21 +7,20 @@
 //
 
 import Foundation
-import CoreData
-
-enum CodingKeys: String, CodingKey {
-    case id
-    case purchaseDate = "purchase_date"
-    case merchant
-    case amount
-    case notes
-    case createdAt = "created_at"
-    case updatedAt = "updated_at"
-    case userID = "user_id"
-}
 
 struct ReceiptRepresentation: Codable, Equatable {
-    var id: Int64
+    enum CodingKeys: String, CodingKey {
+        case identifier = "id"
+        case purchaseDate = "purchase_date"
+        case merchant
+        case amount
+        case notes
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+        case userID = "user_id"
+    }
+    
+    var identifier: Int64
     var purchaseDate: Date
     var merchant: String
     var amount: Double

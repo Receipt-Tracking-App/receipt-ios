@@ -12,6 +12,9 @@
 		0E50791823382024003CDFDB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E50791723382024003CDFDB /* Assets.xcassets */; };
 		0E50791B23382024003CDFDB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E50791923382024003CDFDB /* LaunchScreen.storyboard */; };
 		0E50793B2339636E003CDFDB /* User+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50793A2339636E003CDFDB /* User+Convenience.swift */; };
+		0E50793D23396733003CDFDB /* UserRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50793C23396733003CDFDB /* UserRepresentation.swift */; };
+		0E50793F23396A76003CDFDB /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50793E23396A76003CDFDB /* Token.swift */; };
+		0E50794123396AB5003CDFDB /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50794023396AB5003CDFDB /* UserController.swift */; };
 		63042CFB23392F45003EDA71 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63042CFA23392F45003EDA71 /* Register.storyboard */; };
 		634C5457233944520054183B /* ReceiptCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C5456233944520054183B /* ReceiptCollectionViewController.swift */; };
 		634C5459233944670054183B /* ReceiptCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C5458233944670054183B /* ReceiptCollectionViewCell.swift */; };
@@ -36,6 +39,9 @@
 		0E50791A23382024003CDFDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E50791C23382024003CDFDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E50793A2339636E003CDFDB /* User+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Convenience.swift"; sourceTree = "<group>"; };
+		0E50793C23396733003CDFDB /* UserRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepresentation.swift; sourceTree = "<group>"; };
+		0E50793E23396A76003CDFDB /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		0E50794023396AB5003CDFDB /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		63042CFA23392F45003EDA71 /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		634C5456233944520054183B /* ReceiptCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptCollectionViewController.swift; sourceTree = "<group>"; };
 		634C5458233944670054183B /* ReceiptCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -116,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				634C545F2339450A0054183B /* ReceiptController.swift */,
+				0E50794023396AB5003CDFDB /* UserController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -142,9 +149,11 @@
 		634C5470233948D80054183B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				634C546E233948CF0054183B /* ReceiptRepresentation.swift */,
 				634C546C233948B00054183B /* Receipt+Convenience.swift */,
+				634C546E233948CF0054183B /* ReceiptRepresentation.swift */,
 				0E50793A2339636E003CDFDB /* User+Convenience.swift */,
+				0E50793C23396733003CDFDB /* UserRepresentation.swift */,
+				0E50793E23396A76003CDFDB /* Token.swift */,
 				634C546B2339487E0054183B /* Core Data */,
 			);
 			path = Models;
@@ -234,11 +243,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E50794123396AB5003CDFDB /* UserController.swift in Sources */,
 				634C546D233948B00054183B /* Receipt+Convenience.swift in Sources */,
 				634C54602339450A0054183B /* ReceiptController.swift in Sources */,
 				634C545B233944920054183B /* AddViewController.swift in Sources */,
 				634C5474233953940054183B /* CreateAccountViewController.swift in Sources */,
 				634C5459233944670054183B /* ReceiptCollectionViewCell.swift in Sources */,
+				0E50793D23396733003CDFDB /* UserRepresentation.swift in Sources */,
 				634C546F233948CF0054183B /* ReceiptRepresentation.swift in Sources */,
 				634C5478233953B40054183B /* Onboarding2ViewController.swift in Sources */,
 				634C547A233953C00054183B /* Onboarding3ViewController.swift in Sources */,
@@ -248,6 +259,7 @@
 				634C5476233953A60054183B /* Onboarding1ViewController.swift in Sources */,
 				634C547223394C230054183B /* LoginViewController.swift in Sources */,
 				634C5457233944520054183B /* ReceiptCollectionViewController.swift in Sources */,
+				0E50793F23396A76003CDFDB /* Token.swift in Sources */,
 				0E50793B2339636E003CDFDB /* User+Convenience.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
