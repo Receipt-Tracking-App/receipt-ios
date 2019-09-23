@@ -21,6 +21,10 @@
 		634C546D233948B00054183B /* Receipt+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C546C233948B00054183B /* Receipt+Convenience.swift */; };
 		634C546F233948CF0054183B /* ReceiptRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C546E233948CF0054183B /* ReceiptRepresentation.swift */; };
 		634C547223394C230054183B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C547123394C230054183B /* LoginViewController.swift */; };
+		634C5474233953940054183B /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C5473233953940054183B /* CreateAccountViewController.swift */; };
+		634C5476233953A60054183B /* Onboarding1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C5475233953A60054183B /* Onboarding1ViewController.swift */; };
+		634C5478233953B40054183B /* Onboarding2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C5477233953B40054183B /* Onboarding2ViewController.swift */; };
+		634C547A233953C00054183B /* Onboarding3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C5479233953C00054183B /* Onboarding3ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +44,10 @@
 		634C546C233948B00054183B /* Receipt+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Receipt+Convenience.swift"; sourceTree = "<group>"; };
 		634C546E233948CF0054183B /* ReceiptRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptRepresentation.swift; sourceTree = "<group>"; };
 		634C547123394C230054183B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		634C5473233953940054183B /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		634C5475233953A60054183B /* Onboarding1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding1ViewController.swift; sourceTree = "<group>"; };
+		634C5477233953B40054183B /* Onboarding2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding2ViewController.swift; sourceTree = "<group>"; };
+		634C5479233953C00054183B /* Onboarding3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding3ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +64,6 @@
 		0E50790423382022003CDFDB = {
 			isa = PBXGroup;
 			children = (
-				634C547123394C230054183B /* LoginViewController.swift */,
 				0E50790F23382023003CDFDB /* ReceiptTracker */,
 				0E50790E23382023003CDFDB /* Products */,
 			);
@@ -98,6 +105,7 @@
 				634C545A233944920054183B /* AddViewController.swift */,
 				634C5458233944670054183B /* ReceiptCollectionViewCell.swift */,
 				634C5456233944520054183B /* ReceiptCollectionViewController.swift */,
+				634C547B233953C60054183B /* Login and Register */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -137,6 +145,18 @@
 				634C546B2339487E0054183B /* Core Data */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		634C547B233953C60054183B /* Login and Register */ = {
+			isa = PBXGroup;
+			children = (
+				634C547123394C230054183B /* LoginViewController.swift */,
+				634C5473233953940054183B /* CreateAccountViewController.swift */,
+				634C5475233953A60054183B /* Onboarding1ViewController.swift */,
+				634C5477233953B40054183B /* Onboarding2ViewController.swift */,
+				634C5479233953C00054183B /* Onboarding3ViewController.swift */,
+			);
+			path = "Login and Register";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,11 +234,15 @@
 				634C546D233948B00054183B /* Receipt+Convenience.swift in Sources */,
 				634C54602339450A0054183B /* ReceiptController.swift in Sources */,
 				634C545B233944920054183B /* AddViewController.swift in Sources */,
+				634C5474233953940054183B /* CreateAccountViewController.swift in Sources */,
 				634C5459233944670054183B /* ReceiptCollectionViewCell.swift in Sources */,
 				634C546F233948CF0054183B /* ReceiptRepresentation.swift in Sources */,
+				634C5478233953B40054183B /* Onboarding2ViewController.swift in Sources */,
+				634C547A233953C00054183B /* Onboarding3ViewController.swift in Sources */,
 				634C546A233948530054183B /* ReceiptCoreData.xcdatamodeld in Sources */,
 				634C5467233948240054183B /* CoreDataStack.swift in Sources */,
 				0E50791123382023003CDFDB /* AppDelegate.swift in Sources */,
+				634C5476233953A60054183B /* Onboarding1ViewController.swift in Sources */,
 				634C547223394C230054183B /* LoginViewController.swift in Sources */,
 				634C5457233944520054183B /* ReceiptCollectionViewController.swift in Sources */,
 			);
