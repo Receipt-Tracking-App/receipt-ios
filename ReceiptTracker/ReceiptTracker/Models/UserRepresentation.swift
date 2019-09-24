@@ -20,7 +20,7 @@ struct UserRepresentation: Codable, Equatable {
         case updatedAt = "updated_at"
     }
     
-    var identifier: Int64
+    var identifier: Int32
     var firstName: String
     var lastName: String
     var username: String

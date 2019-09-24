@@ -45,7 +45,6 @@ class ReceiptController {
     }
 
     func delete(receipt: Receipt) {
-
         CoreDataStack.shared.mainContext.delete(receipt)
         deleteEntryFromServer(receipt: receipt)
         CoreDataStack.shared.save()
@@ -93,7 +92,6 @@ class ReceiptController {
         let requestURL = baseURL // .appendingPathComponent(identifier) TODO: Append userID
 
         URLSession.shared.dataTask(with: requestURL) { (data, _, error) in
-
             if let error = error {
                 NSLog("Error fetching receipts from server: \(error)")
                 completion(error)
