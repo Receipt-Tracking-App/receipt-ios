@@ -10,35 +10,70 @@ import UIKit
 import CoreData
 
 class ReceiptTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+    
+    let receiptController = ReceiptController()
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         tableView.reloadData()
     }
+    
+    lazy var fetchedResultsController: NSFetchedResultsController<Receipt> = {
+        let fetchRequest: NSFetchRequest<Receipt> = Receipt.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "categoryId", ascending: false)]
+        
+        let moc = CoreDataStack.shared.mainContext
+        let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: moc, sectionNameKeyPath: "categoryId", cacheName: nil)
+        
+        frc.delegate = self
+        
+        try! frc.performFetch()
+        
+        return frc
+    }()
+    
+    func getSectionName(section: Int) -> String {
+        switch section {
+        case 1:
+            return "Personal Shopping"
+        case 2:
+            return "Groceries"
+        case 3:
+            return "Random"
+        case 4:
+            return "Other"
+        case 5:
+            return "Options"
+        default:
+            return ""
+        }
+    }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return fetchedResultsController.sections?[section].name
+        if let section = Int(fetchedResultsController.sections?[section].name ?? "0") {
+            return getSectionName(section: section)
+        } else {
+            return ""
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return fetchedResultsController.sections?.count ?? 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return fetchedResultsController.sections?[section].numberOfObjects ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ReceiptCell", for: indexPath) as? ReceiptTableViewCell else
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ReceiptCell", for: indexPath) as? ReceiptTableViewCell else
             { return UITableViewCell() }
 
         let receipt = fetchedResultsController.object(at: indexPath)
-        cell.entry = entry
+        cell.receipt = receipt
         // Configure the cell...
 
         return cell
@@ -48,8 +83,8 @@ class ReceiptTableViewController: UITableViewController, NSFetchedResultsControl
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
            
-            let entry = fetchedResultsController.object(at: indexPath)
-            entryController.delete(entry: entry)
+            let receipt = fetchedResultsController.object(at: indexPath)
+            receiptController.delete(receipt: receipt)
         }    
     }
     
@@ -113,9 +148,13 @@ class ReceiptTableViewController: UITableViewController, NSFetchedResultsControl
             destinationVC.receiptController = receiptController
             
         case "ViewReceipt":
-            guard let destinationVC = segue.destination as?
+            guard let destinationVC = segue.destination as? AddViewController,
+            let indexPath = tableView.indexPathForSelectedRow else { return }
+            destinationVC.receiptController = receiptController
+            destinationVC.receipt = fetchedResultsController.object(at: indexPath)
         default:
-            <#code#>
+            return
         }
+    }
 }
       
