@@ -10,13 +10,52 @@ import UIKit
 
 class CreateAccountViewController: UIViewController {
 
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func signUp(_ sender: Any) {
+        guard let firstName = firstNameTextField.text, let lastName = lastNameTextField.text,
+            let username = usernameTextField.text, let email = emailTextField.text,
+            let password = passwordTextField.text else {
+                let alert = UIAlertController(title: "Unable to create account", message: "One or more fields is empty. All fields are required.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                present(alert, animated: true, completion: nil)
+                
+                return
+        }
+        
+        if !username.isEmpty && (username.count < 4 || username.count > 12) {
+            let alert = UIAlertController(title: "Invalid username", message: "Your username must be between 4-12 characters.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        } else if !password.isEmpty && (password.count < 4 || password.count > 12) {
+            let alert = UIAlertController(title: "Invalid password", message: "Your password must be between 4-12 characters.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
+        
+        let newUser = User(firstName: firstName, lastName: lastName, username: username, email: email, password: password, createdAt: Date(), updatedAt: Date())
+        
+        UserController.shared.signUp(with: newUser) { (error) in
+            if let error = error {
+                NSLog("Unable to create account: \(error)")
+                
+                let alert = UIAlertController(title: "Unable to create account", message: "There was a network error. Please make sure you have a strong connection.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
