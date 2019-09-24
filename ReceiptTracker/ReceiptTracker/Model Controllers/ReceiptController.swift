@@ -130,5 +130,8 @@ class ReceiptController {
         receipt.notes = receiptRepresentation.notes
         receipt.createdAt = receiptRepresentation.createdAt
         receipt.updatedAt = receiptRepresentation.updatedAt
+        receipt.categoryId = receiptRepresentation.categoryId
+        receipt.tagName = receiptRepresentation.tagName
+        receipt.tagDescription = receiptRepresentation.tagDescription
     }
 }

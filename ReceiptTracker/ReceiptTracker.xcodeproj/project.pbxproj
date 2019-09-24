@@ -16,8 +16,6 @@
 		0E50793F23396A76003CDFDB /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50793E23396A76003CDFDB /* Token.swift */; };
 		0E50794123396AB5003CDFDB /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50794023396AB5003CDFDB /* UserController.swift */; };
 		63042CFB23392F45003EDA71 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63042CFA23392F45003EDA71 /* Register.storyboard */; };
-		634C5457233944520054183B /* ReceiptCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C5456233944520054183B /* ReceiptCollectionViewController.swift */; };
-		634C5459233944670054183B /* ReceiptCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C5458233944670054183B /* ReceiptCollectionViewCell.swift */; };
 		634C545B233944920054183B /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C545A233944920054183B /* AddViewController.swift */; };
 		634C54602339450A0054183B /* ReceiptController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C545F2339450A0054183B /* ReceiptController.swift */; };
 		634C5467233948240054183B /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C5466233948240054183B /* CoreDataStack.swift */; };
@@ -29,6 +27,8 @@
 		634C5476233953A60054183B /* Onboarding1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C5475233953A60054183B /* Onboarding1ViewController.swift */; };
 		634C5478233953B40054183B /* Onboarding2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C5477233953B40054183B /* Onboarding2ViewController.swift */; };
 		634C547A233953C00054183B /* Onboarding3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C5479233953C00054183B /* Onboarding3ViewController.swift */; };
+		634C547D233991740054183B /* ReceiptTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C547C233991740054183B /* ReceiptTableViewController.swift */; };
+		634C547F2339918E0054183B /* ReceiptTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C547E2339918E0054183B /* ReceiptTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,8 +43,6 @@
 		0E50793E23396A76003CDFDB /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		0E50794023396AB5003CDFDB /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		63042CFA23392F45003EDA71 /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
-		634C5456233944520054183B /* ReceiptCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptCollectionViewController.swift; sourceTree = "<group>"; };
-		634C5458233944670054183B /* ReceiptCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptCollectionViewCell.swift; sourceTree = "<group>"; };
 		634C545A233944920054183B /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		634C545F2339450A0054183B /* ReceiptController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptController.swift; sourceTree = "<group>"; };
 		634C5466233948240054183B /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -56,6 +54,8 @@
 		634C5475233953A60054183B /* Onboarding1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding1ViewController.swift; sourceTree = "<group>"; };
 		634C5477233953B40054183B /* Onboarding2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding2ViewController.swift; sourceTree = "<group>"; };
 		634C5479233953C00054183B /* Onboarding3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding3ViewController.swift; sourceTree = "<group>"; };
+		634C547C233991740054183B /* ReceiptTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptTableViewController.swift; sourceTree = "<group>"; };
+		634C547E2339918E0054183B /* ReceiptTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,8 +111,8 @@
 			isa = PBXGroup;
 			children = (
 				634C545A233944920054183B /* AddViewController.swift */,
-				634C5458233944670054183B /* ReceiptCollectionViewCell.swift */,
-				634C5456233944520054183B /* ReceiptCollectionViewController.swift */,
+				634C547C233991740054183B /* ReceiptTableViewController.swift */,
+				634C547E2339918E0054183B /* ReceiptTableViewCell.swift */,
 				634C547B233953C60054183B /* Login and Register */,
 			);
 			path = "View Controllers";
@@ -243,22 +243,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				634C547F2339918E0054183B /* ReceiptTableViewCell.swift in Sources */,
 				0E50794123396AB5003CDFDB /* UserController.swift in Sources */,
 				634C546D233948B00054183B /* Receipt+Convenience.swift in Sources */,
 				634C54602339450A0054183B /* ReceiptController.swift in Sources */,
 				634C545B233944920054183B /* AddViewController.swift in Sources */,
 				634C5474233953940054183B /* CreateAccountViewController.swift in Sources */,
-				634C5459233944670054183B /* ReceiptCollectionViewCell.swift in Sources */,
 				0E50793D23396733003CDFDB /* UserRepresentation.swift in Sources */,
 				634C546F233948CF0054183B /* ReceiptRepresentation.swift in Sources */,
 				634C5478233953B40054183B /* Onboarding2ViewController.swift in Sources */,
 				634C547A233953C00054183B /* Onboarding3ViewController.swift in Sources */,
 				634C546A233948530054183B /* ReceiptCoreData.xcdatamodeld in Sources */,
 				634C5467233948240054183B /* CoreDataStack.swift in Sources */,
+				634C547D233991740054183B /* ReceiptTableViewController.swift in Sources */,
 				0E50791123382023003CDFDB /* AppDelegate.swift in Sources */,
 				634C5476233953A60054183B /* Onboarding1ViewController.swift in Sources */,
 				634C547223394C230054183B /* LoginViewController.swift in Sources */,
-				634C5457233944520054183B /* ReceiptCollectionViewController.swift in Sources */,
 				0E50793F23396A76003CDFDB /* Token.swift in Sources */,
 				0E50793B2339636E003CDFDB /* User+Convenience.swift in Sources */,
 			);
