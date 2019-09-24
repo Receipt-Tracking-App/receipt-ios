@@ -10,25 +10,21 @@ import UIKit
 
 class ReceiptTableViewCell: UITableViewCell {
     
+    override func awakeFromNib() {
+        guard let receipt = receipt else { return }
+        
+        storeName.text = receipt.merchant
+        amountLabel.text = "\(receipt.amount)"
+        dateLabel.text = "\(receipt.createdAt)"
+    }
+    
     var receipt: Receipt? {
         didSet {
-            updateViews()
+            
         }
     }
 
-    @IBOutlet weak var storeLabel: UILabel!
+    @IBOutlet weak var storeName: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
-    func updateViews() {
-        guard let receipt = receipt else { return }
-        storeLabel.text = receipt.merchant
-        amountLabel.text = "\(receipt.amount)"
-//        dateLabel.text = receipt.purchaseDate    // TODO: Make receipt purchaseDate a formattedDate string
-    }
 }
