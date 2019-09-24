@@ -58,6 +58,11 @@
                                         <constraint firstItem="B8n-AY-ZGs" firstAttribute="centerY" secondItem="WVv-eR-ZIY" secondAttribute="centerY" id="uoW-xp-mtr"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="amountLabel" destination="x0Y-3r-DYw" id="5wO-3W-2kW"/>
+                                    <outlet property="dateLabel" destination="YKL-rw-PQS" id="rif-zG-UbC"/>
+                                    <outlet property="storeName" destination="mER-C0-eT0" id="SBj-WO-4w8"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

@@ -11,14 +11,20 @@ import UIKit
 class ReceiptTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+        guard let receipt = receipt else { return }
+        
+        storeName.text = receipt.merchant
+        amountLabel.text = "\(receipt.amount)"
+        dateLabel.text = "\(receipt.createdAt)"
+    }
+    
+    var receipt: Receipt? {
+        didSet {
+            
+        }
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+    @IBOutlet weak var storeName: UILabel!
+    @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
 }

@@ -38,7 +38,7 @@ class ReceiptTableViewController: UITableViewController, NSFetchedResultsControl
             { return UITableViewCell() }
 
         let receipt = fetchedResultsController.object(at: indexPath)
-        cell.entry = entry
+        cell.receipt = receipt
         // Configure the cell...
 
         return cell
@@ -48,8 +48,8 @@ class ReceiptTableViewController: UITableViewController, NSFetchedResultsControl
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
            
-            let entry = fetchedResultsController.object(at: indexPath)
-            entryController.delete(entry: entry)
+            let receipt = fetchedResultsController.object(at: indexPath)
+            receiptController.delete(receipt: receipt)
         }    
     }
     
