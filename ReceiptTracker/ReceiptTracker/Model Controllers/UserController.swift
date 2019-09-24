@@ -11,7 +11,7 @@ import CoreData
 
 enum NetworkError: Error {
     case encodingError
-    case responseError
+    case badResponse
     case otherError(Error)
     case noData
     case badDecode
@@ -53,7 +53,14 @@ class UserController {
             return
         }
         
-        URLSession.shared.dataTask(with: request) { (data, _, error) in
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                print("Status code returned: \(response.statusCode)"); #warning("Debug: Status code")
+                completion(.badResponse)
+                return
+            }
+            
             if let error = error {
                 NSLog("Error creating user on server: \(error)")
                 completion(.otherError(error))
@@ -84,6 +91,13 @@ class UserController {
         }
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                print("Status code returned: \(response.statusCode)"); #warning("Debug: Status code")
+                completion(.badResponse)
+                return
+            }
+            
             if let error = error {
                 NSLog("Error logging in: \(error)")
                 completion(.otherError(error))
@@ -96,8 +110,10 @@ class UserController {
             }
             
             do {
-                let bearer = try JSONDecoder().decode(Token.self, from: data)
-                self.bearer = bearer
+                self.bearer = try JSONDecoder().decode(Token.self, from: data)
+                if let bearer = self.bearer {
+                    print(bearer.token); #warning("Debug: Bearer token")
+                }
                 
             } catch {
                 completion(.badDecode)

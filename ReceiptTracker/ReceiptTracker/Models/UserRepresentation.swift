@@ -31,7 +31,7 @@ struct UserRepresentation: Codable, Equatable {
 }
 
 struct UserLogin: Codable {
-    var username: String
+    var userId: String
     var password: String
 }
 

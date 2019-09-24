@@ -33,9 +33,9 @@ extension User {
     }
     
     var userLogin: UserLogin? {
-        guard let username = username, let password = password else { return nil }
+        guard let userId = username, let password = password else { return nil }
         
-        return UserLogin(username: username, password: password)
+        return UserLogin(userId: userId, password: password)
     }
     
     var userSignup: UserSignup? {
