@@ -15,15 +15,31 @@ struct ReceiptRepresentation: Codable, Equatable {
         case merchant
         case amount
         case notes
+        case tagName
+        case tagDescription
+        case categoryId
         case createdAt = "created_at"
         case updatedAt = "updated_at"
     }
     
-    var identifier: Int64
+    var identifier: Int32
     var purchaseDate: Date
     var merchant: String
     var amount: Double
-    var notes: String
+    var notes: String?
+    var tagName: String?
+    var tagDescription: String?
+    var categoryId: Int16
     var createdAt: Date
     var updatedAt: Date
+}
+
+struct PostReceipt: Codable {
+    var purchaseDate: Date
+    var merchant: String
+    var amount: Double
+    var notes: String?
+    var tagName: String?
+    var tagDescription: String?
+    var categoryId: Int16
 }

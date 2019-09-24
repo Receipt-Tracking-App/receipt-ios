@@ -17,24 +17,27 @@ enum HTTPMethod: String {
 }
 
 class ReceiptController {
-    let baseURL = URL(string: "")!
+    let baseURL = URL(string: "https://lambda-receipt-tracker.herokuapp.com/api")!
 
     init() {
         fetchReceiptsFromServer()
     }
 
-    func createReceipt(identifier: Int64, purchaseDate: Date, merchant: String, amount: Double, notes: String, createdAt: Date, updatedAt: Date, context: NSManagedObjectContext) {
-        let receipt = Receipt(identifier: identifier, purchaseDate: purchaseDate, merchant: merchant, amount: amount, notes: notes, createdAt: createdAt, updatedAt: updatedAt, context: context)
+    func createReceipt(purchaseDate: Date, merchant: String, amount: Double, notes: String?, tagName: String?, tagDescription: String?, categoryId: Int16, createdAt: Date, updatedAt: Date, context: NSManagedObjectContext) {
+        let receipt = Receipt(purchaseDate: purchaseDate, merchant: merchant, amount: amount, notes: notes, tagName: tagName, tagDescription: tagDescription, categoryId: categoryId, createdAt: createdAt, updatedAt: updatedAt, context: context)
 
         put(receipt: receipt)
         CoreDataStack.shared.save()
     }
 
-    func update(receipt: Receipt, purchaseDate: Date, merchant: String, amount: Double, notes: String) {
+    func update(receipt: Receipt, purchaseDate: Date, merchant: String, amount: Double, notes: String?, tagName: String?, tagDescription: String?, categoryId: Int16) {
         receipt.purchaseDate = purchaseDate
         receipt.merchant = merchant
         receipt.amount = amount
         receipt.notes = notes
+        receipt.tagName = tagName
+        receipt.tagDescription = tagDescription
+        receipt.categoryId = categoryId
         receipt.updatedAt = Date()
 
         put(receipt: receipt)
@@ -42,7 +45,6 @@ class ReceiptController {
     }
 
     func delete(receipt: Receipt) {
-
         CoreDataStack.shared.mainContext.delete(receipt)
         deleteEntryFromServer(receipt: receipt)
         CoreDataStack.shared.save()
@@ -54,9 +56,9 @@ class ReceiptController {
         request.httpMethod = HTTPMethod.put.rawValue
 
         do {
-            request.httpBody = try JSONEncoder().encode(receipt.receiptRepresentation)
+            request.httpBody = try JSONEncoder().encode(receipt.postReceipt)
         } catch {
-            NSLog("Error encoding Entry: \(error)")
+            NSLog("Error encoding Receipt: \(error)")
             completion(error)
             return
         }
@@ -72,7 +74,7 @@ class ReceiptController {
     }
 
     func deleteEntryFromServer(receipt: Receipt, completion: @escaping ((Error?) -> Void) = { _ in }) {
-        let requestURL = baseURL // .appendingPathComponent(identifier) TODO: Append userID and receiptID
+        let requestURL = baseURL // .appendingPathComponent(identifier) TODO: Append receiptID
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.delete.rawValue
 
@@ -90,7 +92,6 @@ class ReceiptController {
         let requestURL = baseURL // .appendingPathComponent(identifier) TODO: Append userID
 
         URLSession.shared.dataTask(with: requestURL) { (data, _, error) in
-
             if let error = error {
                 NSLog("Error fetching receipts from server: \(error)")
                 completion(error)

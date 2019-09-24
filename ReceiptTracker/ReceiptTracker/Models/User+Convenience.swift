@@ -10,10 +10,14 @@ import Foundation
 import CoreData
 
 extension User {
-    @discardableResult convenience init(identifier: Int64, firstName: String, lastName: String, username: String, email: String, password: String, createdAt: Date, updatedAt: Date, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
+    @discardableResult convenience init(firstName: String, lastName: String, username: String, email: String, password: String, createdAt: Date, updatedAt: Date, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         self.init(context: context)
         
-        self.identifier = identifier
+        if let identifier = Int32("\(Int.random(in: 1...2_147))\(Int.random(in: 1...483_647)))") {
+            self.identifier = identifier
+        } else {
+            self.identifier = Int32.random(in: 1...2_147_483_647)
+        }
         self.firstName = firstName
         self.lastName = lastName
         self.username = username
@@ -33,9 +37,9 @@ extension User {
     }
     
     var userLogin: UserLogin? {
-        guard let username = username, let password = password else { return nil }
+        guard let userId = username, let password = password else { return nil }
         
-        return UserLogin(username: username, password: password)
+        return UserLogin(userId: userId, password: password)
     }
     
     var userSignup: UserSignup? {
