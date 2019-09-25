@@ -36,6 +36,8 @@ class LoginViewController: UIViewController {
                 let alert = UIAlertController(title: "Unable to log in", message: "There was a network error. Please make sure you have a strong connection.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
+            } else {
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }
