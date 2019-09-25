@@ -15,7 +15,7 @@ class ReceiptTableViewCell: UITableViewCell {
         
         storeName.text = receipt.merchant
         amountLabel.text = "\(receipt.amount)"
-        dateLabel.text = "\(receipt.createdAt)"
+        dateLabel.text = "$\(receipt.createdAt)"
     }
     
     var receipt: Receipt? {
