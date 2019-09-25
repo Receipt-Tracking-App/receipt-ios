@@ -51,7 +51,8 @@ class ReceiptController {
     }
 
     private func put(receipt: Receipt, completion: @escaping ((Error?) -> Void) = { _ in }) {
-        let requestURL = baseURL // .appendingPathComponent(identifier) TODO: Append userID and receiptID
+        let requestURL = baseURL.appendingPathComponent("receipts")
+                                .appendingPathComponent("\(receipt.identifier)")
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.put.rawValue
 
@@ -74,7 +75,8 @@ class ReceiptController {
     }
 
     func deleteEntryFromServer(receipt: Receipt, completion: @escaping ((Error?) -> Void) = { _ in }) {
-        let requestURL = baseURL // .appendingPathComponent(identifier) TODO: Append receiptID
+        let requestURL = baseURL.appendingPathComponent("receipts")
+                                .appendingPathComponent("\(receipt.identifier)")
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.delete.rawValue
 
