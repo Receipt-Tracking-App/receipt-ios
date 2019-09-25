@@ -9,14 +9,37 @@
 import UIKit
 
 class AddViewController: UIViewController {
+    
+    @IBOutlet var receiptImageView: UIView!
+    @IBOutlet weak var merchantTextField: UITextField!
+    @IBOutlet weak var purchaseDateTextField: UITextField!
+    @IBOutlet weak var purchaseAmountTextField: UITextField!
+    
+    var receiptController: ReceiptController?
+    var receipt: Receipt?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        if let receipt = receipt {
+            merchantTextField.text = receipt.merchant
+//            purchaseDateTextField = receipt.purchaseDate // TODO: Make receipt purchaseDate a formattedDate
+            purchaseAmountTextField.text = "\(receipt.amount)"
+            
+        }
     }
     
-
+    @IBAction func addPhoto(_ sender: UIButton) {
+        // TODO: Implement addPhoto
+    }
+    
+    @IBAction func addReceipt(_ sender: UIButton) {
+        guard let receiptController = receiptController, let merchant = merchantTextField.text,
+            let amountString = purchaseAmountTextField.text, let amount = Double(amountString) else { return }
+        receiptController.createReceipt(purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: 1, createdAt: Date(), updatedAt: Date()); #warning("Finish implementation in code and storyboard")
+    }
+    
+    
     /*
     // MARK: - Navigation
 

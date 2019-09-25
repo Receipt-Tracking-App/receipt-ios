@@ -23,8 +23,8 @@ extension User {
         self.username = username
         self.email = email
         self.password = password
-        self.createdAt = createdAt
-        self.updatedAt = updatedAt
+        self.createdAt = dateFormatter.string(from: createdAt)
+        self.updatedAt = dateFormatter.string(from: updatedAt)
     }
     
     var userRepresentation: UserRepresentation? {

@@ -23,7 +23,7 @@ class ReceiptController {
         fetchReceiptsFromServer()
     }
 
-    func createReceipt(purchaseDate: Date, merchant: String, amount: Double, notes: String?, tagName: String?, tagDescription: String?, categoryId: Int16, createdAt: Date, updatedAt: Date, context: NSManagedObjectContext) {
+    func createReceipt(purchaseDate: Date, merchant: String, amount: Double, notes: String?, tagName: String?, tagDescription: String?, categoryId: Int16, createdAt: Date, updatedAt: Date, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         let receipt = Receipt(purchaseDate: purchaseDate, merchant: merchant, amount: amount, notes: notes, tagName: tagName, tagDescription: tagDescription, categoryId: categoryId, createdAt: createdAt, updatedAt: updatedAt, context: context)
 
         put(receipt: receipt)
@@ -31,14 +31,14 @@ class ReceiptController {
     }
 
     func update(receipt: Receipt, purchaseDate: Date, merchant: String, amount: Double, notes: String?, tagName: String?, tagDescription: String?, categoryId: Int16) {
-        receipt.purchaseDate = purchaseDate
+        receipt.purchaseDate = dateFormatter.string(from: purchaseDate)
         receipt.merchant = merchant
         receipt.amount = amount
         receipt.notes = notes
         receipt.tagName = tagName
         receipt.tagDescription = tagDescription
         receipt.categoryId = categoryId
-        receipt.updatedAt = Date()
+        receipt.updatedAt = dateFormatter.string(from: Date())
 
         put(receipt: receipt)
         CoreDataStack.shared.save()
@@ -51,7 +51,8 @@ class ReceiptController {
     }
 
     private func put(receipt: Receipt, completion: @escaping ((Error?) -> Void) = { _ in }) {
-        let requestURL = baseURL // .appendingPathComponent(identifier) TODO: Append userID and receiptID
+        let requestURL = baseURL.appendingPathComponent("receipts")
+                                .appendingPathComponent("\(receipt.identifier)")
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.put.rawValue
 
@@ -74,7 +75,8 @@ class ReceiptController {
     }
 
     func deleteEntryFromServer(receipt: Receipt, completion: @escaping ((Error?) -> Void) = { _ in }) {
-        let requestURL = baseURL // .appendingPathComponent(identifier) TODO: Append receiptID
+        let requestURL = baseURL.appendingPathComponent("receipts")
+                                .appendingPathComponent("\(receipt.identifier)")
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.delete.rawValue
 

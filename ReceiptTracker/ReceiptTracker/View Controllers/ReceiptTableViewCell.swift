@@ -9,7 +9,7 @@
 import UIKit
 
 class ReceiptTableViewCell: UITableViewCell {
-
+    
     override func awakeFromNib() {
         guard let receipt = receipt else { return }
         

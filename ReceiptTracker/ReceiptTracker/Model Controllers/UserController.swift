@@ -56,7 +56,7 @@ class UserController {
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
-                print("Status code returned: \(response.statusCode)"); #warning("Debug: Status code")
+                print("Status code returned: \(response.statusCode)")
                 completion(.badResponse)
                 return
             }
@@ -70,16 +70,15 @@ class UserController {
             }.resume()
     }
     
-    func login(with user: User, completion: @escaping (NetworkError?) -> Void) {
+    func login(with userLogin: UserLogin, completion: @escaping (NetworkError?) -> Void) {
         let loginURL = baseURL
             .appendingPathComponent("auth")
-            .appendingPathComponent(LoginType.register.rawValue)
+            .appendingPathComponent(LoginType.login.rawValue)
         
         var request = URLRequest(url: loginURL)
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        guard let userLogin = user.userLogin else { return }
         
         let encoder = JSONEncoder()
         do {
@@ -93,7 +92,7 @@ class UserController {
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
-                print("Status code returned: \(response.statusCode)"); #warning("Debug: Status code")
+                print("Status code returned: \(response.statusCode)")
                 completion(.badResponse)
                 return
             }
@@ -112,7 +111,7 @@ class UserController {
             do {
                 self.bearer = try JSONDecoder().decode(Token.self, from: data)
                 if let bearer = self.bearer {
-                    print(bearer.token); #warning("Debug: Bearer token")
+                    print(bearer.token)
                 }
                 
             } catch {
