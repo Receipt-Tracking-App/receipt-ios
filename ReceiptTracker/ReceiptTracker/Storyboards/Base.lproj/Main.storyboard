@@ -18,6 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="ETy-bO-iN2">
+                            <rect key="frame" x="0.0" y="106" width="414" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReceiptCell" rowHeight="78" id="zkK-2L-tzT" customClass="ReceiptTableViewCell" customModule="ReceiptTracker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="78"/>
@@ -134,7 +139,7 @@
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="0.76000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="Gh1-fa-j3F" firstAttribute="top" secondItem="6t3-s5-cDR" secondAttribute="top" constant="30" id="7OJ-Sl-PNS"/>
                                     <constraint firstItem="mtU-mQ-MSq" firstAttribute="top" secondItem="LXr-pp-QNf" secondAttribute="bottom" constant="20" id="HQH-UO-FpC"/>
@@ -194,6 +199,7 @@
                         <outlet property="merchantTextField" destination="Gh1-fa-j3F" id="cRF-Aa-i0h"/>
                         <outlet property="purchaseAmountTextField" destination="mtU-mQ-MSq" id="eaX-v0-Qqm"/>
                         <outlet property="purchaseDateTextField" destination="LXr-pp-QNf" id="B97-zo-SYD"/>
+                        <outlet property="receiptDetailsLabel" destination="HBB-fT-qWk" id="fZh-Oc-1rm"/>
                         <outlet property="receiptImageView" destination="1TE-xP-8oc" id="zfi-i2-aXJ"/>
                     </connections>
                 </viewController>

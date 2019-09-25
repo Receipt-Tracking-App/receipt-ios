@@ -15,22 +15,18 @@ class AddViewController: UIViewController {
     @IBOutlet weak var purchaseDateTextField: UITextField!
     @IBOutlet weak var purchaseAmountTextField: UITextField!
     @IBOutlet weak var addReceiptButton: UIButton!
+    @IBOutlet weak var receiptDetailsLabel: UILabel!
+    
     lazy var currencyFormatter: NumberFormatter = {
-            
             let formatter = NumberFormatter()
-            
             formatter.numberStyle = .currency
-            
             formatter.locale = Locale(identifier: "en_US")
             
     //        formatter.currencyCode = "USD"
             
             formatter.currencySymbol = "$"
-            
             formatter.maximumFractionDigits = 2
-            
             formatter.minimumFractionDigits = 2
-            
             return formatter
         }()
     
@@ -39,6 +35,8 @@ class AddViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setUI()
         
         purchaseAmountTextField.placeholder = currencyFormatter.string(from: NSNumber(value: 0))
         
@@ -49,6 +47,16 @@ class AddViewController: UIViewController {
             purchaseAmountTextField.text = "\(receipt.amount)"
             addReceiptButton.setTitle("Update Receipt", for: .normal)
         }
+    }
+    
+    func setUI() {
+        navigationController?.navigationBar.barTintColor = .background
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.text]
+        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.text]
+        navigationController?.navigationBar.tintColor = .text
+        
+        view.backgroundColor = .background
+        receiptDetailsLabel.textColor = .text
     }
     
     @IBAction func addPhoto(_ sender: UIButton) {

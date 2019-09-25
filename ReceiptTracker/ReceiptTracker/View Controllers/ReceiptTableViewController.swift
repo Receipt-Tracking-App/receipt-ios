@@ -12,6 +12,12 @@ import CoreData
 class ReceiptTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     let receiptController = ReceiptController()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setUI()
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -34,6 +40,16 @@ class ReceiptTableViewController: UITableViewController, NSFetchedResultsControl
         return frc
     }()
     
+    func setUI() {
+        navigationController?.navigationBar.barTintColor = .background
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.text]
+        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.text]
+        navigationController?.navigationBar.tintColor = .text
+        
+        view.backgroundColor = .background
+        tableView.backgroundColor = .background
+    }
+    
     func getSectionName(section: Int) -> String {
         switch section {
         case 1:
@@ -52,13 +68,23 @@ class ReceiptTableViewController: UITableViewController, NSFetchedResultsControl
     }
 
     // MARK: - Table view data source
-
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let returnedView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 20))
+        let label = UILabel(frame: CGRect(x: 18, y: 3.5, width: returnedView.frame.width, height: returnedView.frame.height))
+        
+        returnedView.backgroundColor = .sectionHeader
+        
         if let section = Int(fetchedResultsController.sections?[section].name ?? "0") {
-            return getSectionName(section: section)
+            label.text = getSectionName(section: section)
         } else {
-            return ""
+            label.text = ""
         }
+        
+        label.textColor = .text
+        
+        returnedView.addSubview(label)
+        return returnedView
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
