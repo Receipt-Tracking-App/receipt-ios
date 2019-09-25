@@ -29,15 +29,15 @@ class LoginViewController: UIViewController {
         }
         
         let currentUser = UserLogin(userId: username, password: password)
-//        UserController.shared.login(with: currentUser) { (error) in
-//            if let error = error {
-//                NSLog("Unable to log in: \(error)")
-//                
-//                let alert = UIAlertController(title: "Unable to log in", message: "There was a network error. Please make sure you have a strong connection.", preferredStyle: .alert)
-//                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-//                self.present(alert, animated: true, completion: nil)
-//            }
-//        }
+        UserController.shared.login(with: currentUser) { (error) in
+            if let error = error {
+                NSLog("Unable to log in: \(error)")
+                
+                let alert = UIAlertController(title: "Unable to log in", message: "There was a network error. Please make sure you have a strong connection.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
     }
     
     /*

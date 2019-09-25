@@ -70,7 +70,7 @@ class UserController {
             }.resume()
     }
     
-    func login(with user: User, completion: @escaping (NetworkError?) -> Void) {
+    func login(with userLogin: UserLogin, completion: @escaping (NetworkError?) -> Void) {
         let loginURL = baseURL
             .appendingPathComponent("auth")
             .appendingPathComponent(LoginType.register.rawValue)
@@ -79,7 +79,6 @@ class UserController {
         request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        guard let userLogin = user.userLogin else { return }
         
         let encoder = JSONEncoder()
         do {
