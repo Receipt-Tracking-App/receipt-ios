@@ -73,7 +73,7 @@ class UserController {
     func login(with userLogin: UserLogin, completion: @escaping (NetworkError?) -> Void) {
         let loginURL = baseURL
             .appendingPathComponent("auth")
-            .appendingPathComponent(LoginType.register.rawValue)
+            .appendingPathComponent(LoginType.login.rawValue)
         
         var request = URLRequest(url: loginURL)
         request.httpMethod = HTTPMethod.post.rawValue

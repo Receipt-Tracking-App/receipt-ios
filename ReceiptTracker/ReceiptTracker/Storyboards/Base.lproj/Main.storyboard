@@ -80,7 +80,7 @@
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                 <state key="normal" title="Modal"/>
                                 <connections>
-                                    <segue destination="aeV-tO-kSj" kind="presentation" id="2yg-cv-O5z"/>
+                                    <segue destination="aeV-tO-kSj" kind="show" id="2yg-cv-O5z"/>
                                 </connections>
                             </button>
                         </barButtonItem>
