@@ -31,14 +31,14 @@ class ReceiptController {
     }
 
     func update(receipt: Receipt, purchaseDate: Date, merchant: String, amount: Double, notes: String?, tagName: String?, tagDescription: String?, categoryId: Int16) {
-        receipt.purchaseDate = purchaseDate
+        receipt.purchaseDate = dateFormatter.string(from: purchaseDate)
         receipt.merchant = merchant
         receipt.amount = amount
         receipt.notes = notes
         receipt.tagName = tagName
         receipt.tagDescription = tagDescription
         receipt.categoryId = categoryId
-        receipt.updatedAt = Date()
+        receipt.updatedAt = dateFormatter.string(from: Date())
 
         put(receipt: receipt)
         CoreDataStack.shared.save()

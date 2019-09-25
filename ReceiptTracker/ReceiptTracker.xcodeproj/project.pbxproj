@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E3555D3233BCD6400406DA9 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3555D2233BCD6400406DA9 /* DateFormatter.swift */; };
 		0E50791123382023003CDFDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50791023382023003CDFDB /* AppDelegate.swift */; };
 		0E50791623382023003CDFDB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E50791423382023003CDFDB /* Main.storyboard */; };
 		0E50791823382024003CDFDB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E50791723382024003CDFDB /* Assets.xcassets */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E3555D2233BCD6400406DA9 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		0E50790D23382023003CDFDB /* ReceiptTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReceiptTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E50791023382023003CDFDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E50791523382023003CDFDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -69,6 +71,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E3555D4233BCE2E00406DA9 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0E3555D2233BCD6400406DA9 /* DateFormatter.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		0E50790423382022003CDFDB = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +103,7 @@
 				634C545C233944B10054183B /* View Controllers */,
 				63042CF923392F0E003EDA71 /* Storyboards */,
 				634C5465233947F60054183B /* Resources */,
+				0E3555D4233BCE2E00406DA9 /* Helpers */,
 			);
 			path = ReceiptTracker;
 			sourceTree = "<group>";
@@ -248,6 +259,7 @@
 				634C546D233948B00054183B /* Receipt+Convenience.swift in Sources */,
 				634C54602339450A0054183B /* ReceiptController.swift in Sources */,
 				634C545B233944920054183B /* AddViewController.swift in Sources */,
+				0E3555D3233BCD6400406DA9 /* DateFormatter.swift in Sources */,
 				634C5474233953940054183B /* CreateAccountViewController.swift in Sources */,
 				0E50793D23396733003CDFDB /* UserRepresentation.swift in Sources */,
 				634C546F233948CF0054183B /* ReceiptRepresentation.swift in Sources */,

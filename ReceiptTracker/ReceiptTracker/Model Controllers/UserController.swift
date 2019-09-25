@@ -56,7 +56,7 @@ class UserController {
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
-                print("Status code returned: \(response.statusCode)"); #warning("Debug: Status code")
+                print("Status code returned: \(response.statusCode)")
                 completion(.badResponse)
                 return
             }
@@ -92,7 +92,7 @@ class UserController {
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
-                print("Status code returned: \(response.statusCode)"); #warning("Debug: Status code")
+                print("Status code returned: \(response.statusCode)")
                 completion(.badResponse)
                 return
             }
@@ -111,8 +111,7 @@ class UserController {
             do {
                 self.bearer = try JSONDecoder().decode(Token.self, from: data)
                 if let bearer = self.bearer {
-                    CoreDataStack.shared.save()
-                    print(bearer.token); #warning("Debug: Bearer token")
+                    print(bearer.token)
                 }
                 
             } catch {

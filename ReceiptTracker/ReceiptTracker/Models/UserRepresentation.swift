@@ -26,8 +26,8 @@ struct UserRepresentation: Codable, Equatable {
     var username: String
     var email: String
     var password: String
-    var createdAt: Date
-    var updatedAt: Date
+    var createdAt: String
+    var updatedAt: String
 }
 
 struct UserLogin: Codable {

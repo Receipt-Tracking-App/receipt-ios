@@ -18,15 +18,15 @@ extension Receipt {
         } else {
             self.identifier = Int32.random(in: 1...2_147_483_647)
         }
-        self.purchaseDate = purchaseDate
+        self.purchaseDate = dateFormatter.string(from: purchaseDate)
         self.merchant = merchant
         self.amount = amount
         self.notes = notes
         self.tagName = tagName
         self.tagDescription = tagDescription
         self.categoryId = categoryId
-        self.createdAt = createdAt
-        self.updatedAt = updatedAt
+        self.createdAt = dateFormatter.string(from: createdAt)
+        self.updatedAt = dateFormatter.string(from: updatedAt)
     }
     
     @discardableResult convenience init?(receiptRepresentation: ReceiptRepresentation, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
