@@ -14,12 +14,32 @@ class AddViewController: UIViewController {
     @IBOutlet weak var merchantTextField: UITextField!
     @IBOutlet weak var purchaseDateTextField: UITextField!
     @IBOutlet weak var purchaseAmountTextField: UITextField!
+    lazy var currencyFormatter: NumberFormatter = {
+            
+            let formatter = NumberFormatter()
+            
+            formatter.numberStyle = .currency
+            
+            formatter.locale = Locale(identifier: "en_US")
+            
+    //        formatter.currencyCode = "USD"
+            
+            formatter.currencySymbol = "$"
+            
+            formatter.maximumFractionDigits = 2
+            
+            formatter.minimumFractionDigits = 2
+            
+            return formatter
+        }()
     
     var receiptController: ReceiptController?
     var receipt: Receipt?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        purchaseAmountTextField.placeholder = currencyFormatter.string(from: NSNumber(value: 0))
         
         if let receipt = receipt {
             merchantTextField.text = receipt.merchant
