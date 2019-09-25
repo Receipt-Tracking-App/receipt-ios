@@ -51,7 +51,14 @@ class CreateAccountViewController: UIViewController {
                 
                 let alert = UIAlertController(title: "Unable to create account", message: "There was a network error. Please make sure you have a strong connection.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                
+                DispatchQueue.main.async {
+                    self.present(alert, animated: true, completion: nil)
+                }
+            } else  {
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "SignupSuccessfulSegue", sender: self)
+                }
             }
         }
     }

@@ -80,7 +80,6 @@
                                 <state key="normal" title="Sign In"/>
                                 <connections>
                                     <action selector="signIn:" destination="aX1-3s-Xfm" eventType="touchUpInside" id="LOd-zb-KC7"/>
-                                    <segue destination="IuX-Tq-DIr" kind="presentation" id="3pc-v3-PlE"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIGN IN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gx7-MH-rBq">
@@ -121,6 +120,7 @@
                     <connections>
                         <outlet property="passwordTextField" destination="d8z-MY-beZ" id="qqG-rL-YRl"/>
                         <outlet property="usernameTextField" destination="T4R-jE-Zfd" id="4xi-cq-1Ro"/>
+                        <segue destination="IuX-Tq-DIr" kind="show" identifier="LoginSuccessfulSegue" id="ZJy-vv-H6q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cwU-Jw-AXe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -197,7 +197,6 @@
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
                                     <action selector="signUp:" destination="dXd-Zz-bqg" eventType="touchUpInside" id="oqB-jo-0pS"/>
-                                    <segue destination="g7g-hE-AiZ" kind="presentation" id="8fN-Eb-GAU"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -221,6 +220,7 @@
                         <outlet property="lastNameTextField" destination="HDA-EP-3cH" id="htV-SL-t9s"/>
                         <outlet property="passwordTextField" destination="05Y-pD-HJa" id="v4g-AY-yB6"/>
                         <outlet property="usernameTextField" destination="s94-u1-QH6" id="q3Z-nb-l5Y"/>
+                        <segue destination="g7g-hE-AiZ" kind="show" identifier="SignupSuccessfulSegue" id="Pxo-ba-boh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vre-ZX-7O7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
