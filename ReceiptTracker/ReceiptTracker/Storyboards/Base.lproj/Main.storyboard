@@ -79,10 +79,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                 <state key="normal" title="Modal"/>
+                                <connections>
+                                    <segue destination="aeV-tO-kSj" kind="presentation" id="2yg-cv-O5z"/>
+                                </connections>
                             </button>
-                            <connections>
-                                <segue destination="aeV-tO-kSj" kind="presentation" id="yS7-Zl-m9F"/>
-                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Jof-ck-nMW">
                             <connections>
