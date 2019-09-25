@@ -16,6 +16,7 @@ class ReceiptTableViewController: UITableViewController, NSFetchedResultsControl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.tableView.rowHeight = 78;
         tableView.reloadData()
     }
     
@@ -74,7 +75,6 @@ class ReceiptTableViewController: UITableViewController, NSFetchedResultsControl
 
         let receipt = fetchedResultsController.object(at: indexPath)
         cell.receipt = receipt
-        // Configure the cell...
 
         return cell
     }

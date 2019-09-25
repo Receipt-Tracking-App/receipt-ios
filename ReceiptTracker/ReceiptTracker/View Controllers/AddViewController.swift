@@ -14,6 +14,7 @@ class AddViewController: UIViewController {
     @IBOutlet weak var merchantTextField: UITextField!
     @IBOutlet weak var purchaseDateTextField: UITextField!
     @IBOutlet weak var purchaseAmountTextField: UITextField!
+    @IBOutlet weak var addReceiptButton: UIButton!
     lazy var currencyFormatter: NumberFormatter = {
             
             let formatter = NumberFormatter()
@@ -42,10 +43,11 @@ class AddViewController: UIViewController {
         purchaseAmountTextField.placeholder = currencyFormatter.string(from: NSNumber(value: 0))
         
         if let receipt = receipt {
+            title = receipt.merchant
             merchantTextField.text = receipt.merchant
-//            purchaseDateTextField = receipt.purchaseDate // TODO: Make receipt purchaseDate a formattedDate
+            purchaseDateTextField.text = receipt.purchaseDate
             purchaseAmountTextField.text = "\(receipt.amount)"
-            
+            addReceiptButton.setTitle("Update Receipt", for: .normal)
         }
     }
     
@@ -56,7 +58,12 @@ class AddViewController: UIViewController {
     @IBAction func addReceipt(_ sender: UIButton) {
         guard let receiptController = receiptController, let merchant = merchantTextField.text,
             let amountString = purchaseAmountTextField.text, let amount = Double(amountString) else { return }
-        receiptController.createReceipt(purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: 1, createdAt: Date(), updatedAt: Date()); #warning("Finish implementation in code and storyboard")
+        
+        if let receipt = receipt {
+            receiptController.update(receipt: receipt, purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: 1)
+        } else {
+            receiptController.createReceipt(purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: 1); #warning("Finish implementation in code and storyboard")
+        }
     }
     
     
