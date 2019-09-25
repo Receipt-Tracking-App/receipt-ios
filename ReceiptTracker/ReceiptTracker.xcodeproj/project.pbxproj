@@ -34,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		0E3555D2233BCD6400406DA9 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		0E3555D5233BCF3100406DA9 /* ReceiptCoreData 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ReceiptCoreData 2.xcdatamodel"; sourceTree = "<group>"; };
 		0E50790D23382023003CDFDB /* ReceiptTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReceiptTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E50791023382023003CDFDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E50791523382023003CDFDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -475,9 +476,10 @@
 		634C5468233948530054183B /* ReceiptCoreData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				0E3555D5233BCF3100406DA9 /* ReceiptCoreData 2.xcdatamodel */,
 				634C5469233948530054183B /* ReceiptCoreData.xcdatamodel */,
 			);
-			currentVersion = 634C5469233948530054183B /* ReceiptCoreData.xcdatamodel */;
+			currentVersion = 0E3555D5233BCF3100406DA9 /* ReceiptCoreData 2.xcdatamodel */;
 			path = ReceiptCoreData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
