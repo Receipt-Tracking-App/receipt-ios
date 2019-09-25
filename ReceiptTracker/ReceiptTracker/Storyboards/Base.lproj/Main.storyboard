@@ -73,17 +73,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Receiptly" largeTitleDisplayMode="always" id="x6L-Wy-4ug">
-                        <barButtonItem key="leftBarButtonItem" id="WMW-1E-NEY">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="I5h-Eg-Xqv">
-                                <rect key="frame" x="20" y="7" width="92" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                <state key="normal" title="Modal"/>
-                                <connections>
-                                    <segue destination="aeV-tO-kSj" kind="presentation" id="2yg-cv-O5z"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Jof-ck-nMW">
                             <connections>
                                 <segue destination="22B-Qd-oF3" kind="show" id="DVV-Yb-O3Y"/>
@@ -94,14 +83,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BOX-RP-17V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1192.753623188406" y="28.794642857142854"/>
-        </scene>
-        <!--Register-->
-        <scene sceneID="1d6-aM-qkd">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Register" id="aeV-tO-kSj" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UMg-8l-On2" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1193" y="450"/>
         </scene>
         <!--Add Receipt-->
         <scene sceneID="26D-bc-kGS">

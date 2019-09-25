@@ -35,9 +35,8 @@ class AddViewController: UIViewController {
     
     @IBAction func addReceipt(_ sender: UIButton) {
         guard let receiptController = receiptController, let merchant = merchantTextField.text,
-            let amount = purchaseAmountTextField.text else { return }
-//        receiptController.createReceipt(purchaseDate: <#T##Date#>, merchant: <#T##String#>, amount: <#T##Double#>, notes: <#T##String?#>, tagName: <#T##String?#>, tagDescription: <#T##String?#>, categoryId: <#T##Int16#>, createdAt: Date(), updatedAt: Date())
-        // TODO: Finish addReceipt implementation
+            let amountString = purchaseAmountTextField.text, let amount = Double(amountString) else { return }
+        receiptController.createReceipt(purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: 1, createdAt: Date(), updatedAt: Date()); #warning("Finish implementation in code and storyboard")
     }
     
     
