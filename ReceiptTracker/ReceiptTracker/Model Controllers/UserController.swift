@@ -111,6 +111,7 @@ class UserController {
             do {
                 self.bearer = try JSONDecoder().decode(Token.self, from: data)
                 if let bearer = self.bearer {
+                    CoreDataStack.shared.save()
                     print(bearer.token); #warning("Debug: Bearer token")
                 }
                 
