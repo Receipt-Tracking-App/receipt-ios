@@ -16,6 +16,7 @@ class AddViewController: UIViewController {
     @IBOutlet weak var purchaseAmountTextField: UITextField!
     @IBOutlet weak var addReceiptButton: UIButton!
     @IBOutlet weak var receiptDetailsLabel: UILabel!
+    @IBOutlet weak var categoryPicker: UIPickerView!
     
     var imagePicker: ImagePicker!
     
