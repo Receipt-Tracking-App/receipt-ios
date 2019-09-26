@@ -23,22 +23,22 @@ class ReceiptController {
         fetchReceiptsFromServer()
     }
 
-    func createReceipt(purchaseDate: Date, merchant: String, amount: Double, notes: String?, tagName: String?, tagDescription: String?, categoryId: Int16, createdAt: Date, updatedAt: Date, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
-        let receipt = Receipt(purchaseDate: purchaseDate, merchant: merchant, amount: amount, notes: notes, tagName: tagName, tagDescription: tagDescription, categoryId: categoryId, createdAt: createdAt, updatedAt: updatedAt, context: context)
+    func createReceipt(purchaseDate: Date, merchant: String, amount: Double, notes: String?, tagName: String?, tagDescription: String?, categoryId: Int16, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
+        let receipt = Receipt(purchaseDate: purchaseDate, merchant: merchant, amount: amount, notes: notes, tagName: tagName, tagDescription: tagDescription, categoryId: categoryId, createdAt: Date(), updatedAt: Date(), context: context)
 
         put(receipt: receipt)
         CoreDataStack.shared.save()
     }
 
     func update(receipt: Receipt, purchaseDate: Date, merchant: String, amount: Double, notes: String?, tagName: String?, tagDescription: String?, categoryId: Int16) {
-        receipt.purchaseDate = purchaseDate
+        receipt.purchaseDate = dateFormatter.string(from: purchaseDate)
         receipt.merchant = merchant
         receipt.amount = amount
         receipt.notes = notes
         receipt.tagName = tagName
         receipt.tagDescription = tagDescription
         receipt.categoryId = categoryId
-        receipt.updatedAt = Date()
+        receipt.updatedAt = dateFormatter.string(from: Date())
 
         put(receipt: receipt)
         CoreDataStack.shared.save()
@@ -51,7 +51,8 @@ class ReceiptController {
     }
 
     private func put(receipt: Receipt, completion: @escaping ((Error?) -> Void) = { _ in }) {
-        let requestURL = baseURL // .appendingPathComponent(identifier) TODO: Append userID and receiptID
+        let requestURL = baseURL.appendingPathComponent("receipts")
+                                .appendingPathComponent("\(receipt.identifier)")
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.put.rawValue
 
@@ -74,7 +75,8 @@ class ReceiptController {
     }
 
     func deleteEntryFromServer(receipt: Receipt, completion: @escaping ((Error?) -> Void) = { _ in }) {
-        let requestURL = baseURL // .appendingPathComponent(identifier) TODO: Append receiptID
+        let requestURL = baseURL.appendingPathComponent("receipts")
+                                .appendingPathComponent("\(receipt.identifier)")
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.delete.rawValue
 
@@ -120,6 +122,38 @@ class ReceiptController {
 
     private func updateReceipts(with representations: [ReceiptRepresentation]) {
         //TODO: Remake updateReceipts function
+        
+        let receiptsWithID = representations.filter({$0.identifier != nil })
+        let identifiersToFetch = receiptsWithID.compactMap({ UUID(uuidString: $0.identifier )})
+        
+        let representationsByID = Dictionary(uniqueKeysWithValues: zip(identifiersToFetch, representations))
+        
+        var receiptsToCreate = representationsByID
+        
+        let fetchRequest: NSFetchRequest<Receipt> = Receipt.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "identifier IN %0", identifiersToFetch)
+        
+        let context = CoreDataStack.shared.container.newBackgroundContext()
+        
+        context.performAndWait {
+            
+            do {
+                let existingReceipts = try context.fetch(fetchRequest)
+                
+                for receipt in existingReceipts {
+                    guard let id = receip.identifier,
+                    let identifier = UUID(uuidString: id),
+                        let representation = representationsByID[identifier] else { continue }
+                    self.update(receipt: receipt, with: representation)
+                    
+                    receiptsToCreate.removeValue(forKey: identifier)
+                }
+                
+                for representation in receiptsToCreate.values {
+                    Receipt(receiptRepresentation: representation, context: context)
+                }
+            }
+        }
     }
 
     private func update(receipt: Receipt, with receiptRepresentation: ReceiptRepresentation) {

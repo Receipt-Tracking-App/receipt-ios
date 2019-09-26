@@ -11,16 +11,26 @@ import UIKit
 class ReceiptTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
-        guard let receipt = receipt else { return }
-        
-        storeName.text = receipt.merchant
-        amountLabel.text = "\(receipt.amount)"
-        dateLabel.text = "$\(receipt.createdAt)"
+        updateViews()
     }
     
     var receipt: Receipt? {
         didSet {
-            
+            updateViews()
+        }
+    }
+    
+    var cellDateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy"
+        return formatter
+    }
+    
+    func updateViews() {
+        if let receipt = receipt, let createdAt = receipt.createdAt {
+            storeName.text = receipt.merchant
+            amountLabel.text = "$\(receipt.amount)"
+            dateLabel.text = "\(cellDateFormatter.string(from: dateFormatter.date(from: createdAt) ?? Date()))"
         }
     }
 

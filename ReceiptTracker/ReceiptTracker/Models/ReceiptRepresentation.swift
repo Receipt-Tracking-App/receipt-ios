@@ -23,19 +23,19 @@ struct ReceiptRepresentation: Codable, Equatable {
     }
     
     var identifier: Int32
-    var purchaseDate: Date
+    var purchaseDate: String
     var merchant: String
     var amount: Double
     var notes: String?
     var tagName: String?
     var tagDescription: String?
     var categoryId: Int16
-    var createdAt: Date
-    var updatedAt: Date
+    var createdAt: String
+    var updatedAt: String
 }
 
 struct PostReceipt: Codable {
-    var purchaseDate: Date
+    var purchaseDate: String
     var merchant: String
     var amount: Double
     var notes: String?
