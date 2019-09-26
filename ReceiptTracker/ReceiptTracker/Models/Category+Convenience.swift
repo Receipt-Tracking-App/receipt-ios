@@ -10,7 +10,7 @@ import Foundation
 import  CoreData
 
 extension ReceiptCategory {
-    convenience init(name: String, id: Int16, context: NSManagedObjectContext) {
+    convenience init(name: String, id: Int16, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         self.init(context: context)
         self.name = name
         self.id = id
