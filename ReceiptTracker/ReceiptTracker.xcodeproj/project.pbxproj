@@ -32,6 +32,8 @@
 		634C547A233953C00054183B /* Onboarding3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C5479233953C00054183B /* Onboarding3ViewController.swift */; };
 		634C547D233991740054183B /* ReceiptTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C547C233991740054183B /* ReceiptTableViewController.swift */; };
 		634C547F2339918E0054183B /* ReceiptTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C547E2339918E0054183B /* ReceiptTableViewCell.swift */; };
+		634C549A233D4C3E0054183B /* LoginViewUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C5499233D4C3E0054183B /* LoginViewUI.swift */; };
+		634C549C233D5ECE0054183B /* Category+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C549B233D5ECE0054183B /* Category+Convenience.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +67,26 @@
 		634C5479233953C00054183B /* Onboarding3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding3ViewController.swift; sourceTree = "<group>"; };
 		634C547C233991740054183B /* ReceiptTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptTableViewController.swift; sourceTree = "<group>"; };
 		634C547E2339918E0054183B /* ReceiptTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptTableViewCell.swift; sourceTree = "<group>"; };
+		634C5482233D33E20054183B /* Poppins-RegularItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-RegularItalic.ttf"; sourceTree = "<group>"; };
+		634C5483233D33E20054183B /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
+		634C5484233D33E30054183B /* Poppins-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		634C5485233D33E30054183B /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
+		634C5486233D33E30054183B /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		634C5487233D33E30054183B /* Poppins-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		634C5488233D33E30054183B /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		634C5489233D33E30054183B /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
+		634C548A233D33E30054183B /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		634C548B233D33E40054183B /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
+		634C548C233D33E40054183B /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		634C548D233D33E40054183B /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
+		634C548E233D33E40054183B /* Poppins-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-LightItalic.ttf"; sourceTree = "<group>"; };
+		634C548F233D33E40054183B /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
+		634C5490233D33EF0054183B /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		634C5491233D33EF0054183B /* Poppins-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Black.ttf"; sourceTree = "<group>"; };
+		634C5492233D33EF0054183B /* Poppins-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BoldItalic.ttf"; sourceTree = "<group>"; };
+		634C5493233D33EF0054183B /* Poppins-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BlackItalic.ttf"; sourceTree = "<group>"; };
+		634C5499233D4C3E0054183B /* LoginViewUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewUI.swift; sourceTree = "<group>"; };
+		634C549B233D5ECE0054183B /* Category+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+Convenience.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,8 +143,8 @@
 			isa = PBXGroup;
 			children = (
 				0E50791423382023003CDFDB /* Main.storyboard */,
-				0E50791923382024003CDFDB /* LaunchScreen.storyboard */,
 				63042CFA23392F45003EDA71 /* Register.storyboard */,
+				0E50791923382024003CDFDB /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -151,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				0E50791723382024003CDFDB /* Assets.xcassets */,
+				634C5494233D34530054183B /* Fon */,
 				0E50791023382023003CDFDB /* AppDelegate.swift */,
 				0E50791C23382024003CDFDB /* Info.plist */,
 			);
@@ -170,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				634C546C233948B00054183B /* Receipt+Convenience.swift */,
+				634C549B233D5ECE0054183B /* Category+Convenience.swift */,
 				634C546E233948CF0054183B /* ReceiptRepresentation.swift */,
 				0E50793A2339636E003CDFDB /* User+Convenience.swift */,
 				0E50793C23396733003CDFDB /* UserRepresentation.swift */,
@@ -182,13 +206,55 @@
 		634C547B233953C60054183B /* Login and Register */ = {
 			isa = PBXGroup;
 			children = (
-				634C547123394C230054183B /* LoginViewController.swift */,
-				634C5473233953940054183B /* CreateAccountViewController.swift */,
+				634C5498233D4BE10054183B /* Controllers */,
+				634C5497233D4BD30054183B /* UI */,
+			);
+			path = "Login and Register";
+			sourceTree = "<group>";
+		};
+		634C5494233D34530054183B /* Fon */ = {
+			isa = PBXGroup;
+			children = (
+				634C5485233D33E30054183B /* Poppins-ExtraBold.ttf */,
+				634C5491233D33EF0054183B /* Poppins-Black.ttf */,
+				634C5493233D33EF0054183B /* Poppins-BlackItalic.ttf */,
+				634C5490233D33EF0054183B /* Poppins-Bold.ttf */,
+				634C5492233D33EF0054183B /* Poppins-BoldItalic.ttf */,
+				634C5487233D33E30054183B /* Poppins-ExtraBoldItalic.ttf */,
+				634C548D233D33E40054183B /* Poppins-ExtraLight.ttf */,
+				634C5488233D33E30054183B /* Poppins-ExtraLightItalic.ttf */,
+				634C5483233D33E20054183B /* Poppins-Light.ttf */,
+				634C548E233D33E40054183B /* Poppins-LightItalic.ttf */,
+				634C5486233D33E30054183B /* Poppins-Medium.ttf */,
+				634C548F233D33E40054183B /* Poppins-MediumItalic.ttf */,
+				634C548A233D33E30054183B /* Poppins-Regular.ttf */,
+				634C5482233D33E20054183B /* Poppins-RegularItalic.ttf */,
+				634C548C233D33E40054183B /* Poppins-SemiBold.ttf */,
+				634C5484233D33E30054183B /* Poppins-SemiBoldItalic.ttf */,
+				634C548B233D33E40054183B /* Poppins-Thin.ttf */,
+				634C5489233D33E30054183B /* Poppins-ThinItalic.ttf */,
+			);
+			path = Fon;
+			sourceTree = "<group>";
+		};
+		634C5497233D4BD30054183B /* UI */ = {
+			isa = PBXGroup;
+			children = (
 				634C5475233953A60054183B /* Onboarding1ViewController.swift */,
 				634C5477233953B40054183B /* Onboarding2ViewController.swift */,
 				634C5479233953C00054183B /* Onboarding3ViewController.swift */,
+				634C5499233D4C3E0054183B /* LoginViewUI.swift */,
 			);
-			path = "Login and Register";
+			path = UI;
+			sourceTree = "<group>";
+		};
+		634C5498233D4BE10054183B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				634C547123394C230054183B /* LoginViewController.swift */,
+				634C5473233953940054183B /* CreateAccountViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +329,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				634C549C233D5ECE0054183B /* Category+Convenience.swift in Sources */,
 				634C547F2339918E0054183B /* ReceiptTableViewCell.swift in Sources */,
 				0E3555D7233BFF2600406DA9 /* Colors.swift in Sources */,
 				0E50794123396AB5003CDFDB /* UserController.swift in Sources */,
@@ -275,6 +342,7 @@
 				0E50793D23396733003CDFDB /* UserRepresentation.swift in Sources */,
 				634C546F233948CF0054183B /* ReceiptRepresentation.swift in Sources */,
 				634C5478233953B40054183B /* Onboarding2ViewController.swift in Sources */,
+				634C549A233D4C3E0054183B /* LoginViewUI.swift in Sources */,
 				634C547A233953C00054183B /* Onboarding3ViewController.swift in Sources */,
 				634C546A233948530054183B /* ReceiptCoreData.xcdatamodeld in Sources */,
 				634C5467233948240054183B /* CoreDataStack.swift in Sources */,
