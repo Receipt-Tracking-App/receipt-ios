@@ -26,7 +26,7 @@ class ReceiptController {
     func createReceipt(purchaseDate: Date, merchant: String, amount: Double, notes: String?, tagName: String?, tagDescription: String?, categoryId: Int16, image: Data? = nil, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         let receipt = Receipt(purchaseDate: purchaseDate, merchant: merchant, amount: amount, notes: notes, tagName: tagName, tagDescription: tagDescription, categoryId: categoryId, createdAt: Date(), updatedAt: Date(), image: image, context: context)
 
-        put(receipt: receipt)
+        post(receipt: receipt)
         CoreDataStack.shared.save()
     }
 
@@ -41,17 +41,19 @@ class ReceiptController {
         receipt.image = image
         receipt.updatedAt = dateFormatter.string(from: Date())
 
-        put(receipt: receipt)
+        post(receipt: receipt)
         CoreDataStack.shared.save()
     }
 
     func delete(receipt: Receipt) {
         CoreDataStack.shared.mainContext.delete(receipt)
-        deleteEntryFromServer(receipt: receipt)
+        deleteReceiptFromServer(receipt: receipt)
         CoreDataStack.shared.save()
     }
 
-    private func put(receipt: Receipt, completion: @escaping ((Error?) -> Void) = { _ in }) {
+    
+    // Not working
+    private func post(receipt: Receipt, completion: @escaping ((Error?) -> Void) = { _ in }) {
         let requestURL = baseURL.appendingPathComponent("receipts")
                                 .appendingPathComponent("\(receipt.identifier)")
         
@@ -61,7 +63,7 @@ class ReceiptController {
             return
         }
         var request = URLRequest(url: requestURL)
-        request.httpMethod = HTTPMethod.put.rawValue
+        request.httpMethod = HTTPMethod.post.rawValue
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
@@ -75,7 +77,7 @@ class ReceiptController {
 
         URLSession.shared.dataTask(with: request) { (data, _, error) in
             if let error = error {
-                NSLog("Error PUTting receipt to server: \(error)")
+                NSLog("Error POSTing receipt to server: \(error)")
                 completion(error)
                 return
             }
@@ -83,7 +85,7 @@ class ReceiptController {
         }.resume()
     }
 
-    func deleteEntryFromServer(receipt: Receipt, completion: @escaping ((Error?) -> Void) = { _ in }) {
+    func deleteReceiptFromServer(receipt: Receipt, completion: @escaping ((Error?) -> Void) = { _ in }) {
         let requestURL = baseURL.appendingPathComponent("receipts")
                                 .appendingPathComponent("\(receipt.identifier)")
         
@@ -107,17 +109,22 @@ class ReceiptController {
         }.resume()
     }
 
+    // Not working
     func fetchReceiptsFromServer(completion: @escaping ((Error?) -> Void) = { _ in }) {
-        let requestURL = baseURL // .appendingPathComponent(identifier) TODO: Append userID
-        
         guard let bearer = UserController.shared.bearer else {
             NSLog("Unable to derive token from bearer. Is user logged in?")
             completion(NetworkError.noAuth)
             return
         }
         
+        let requestURL = baseURL.appendingPathComponent("receipts")
+            .appendingPathComponent("users")
+            .appendingPathComponent("\(bearer.userId)")
+        
+        
+        
         var request = URLRequest(url: requestURL)
-        request.httpMethod = HTTPMethod.delete.rawValue
+        request.httpMethod = HTTPMethod.get.rawValue
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
@@ -135,13 +142,14 @@ class ReceiptController {
                 return
             }
 
-            var receiptReps: [ReceiptRepresentation] = []
-
+            var receipts: ReceiptInfo
+            
             do {
-                receiptReps = try JSONDecoder().decode([String: ReceiptRepresentation].self, from: data).map({$0.value})
-                self.updateReceipts(with: receiptReps)
+//                print(String(data: data, encoding: .utf8))
+                receipts = try JSONDecoder().decode(ReceiptInfo.self, from: data)
+                self.updateReceipts(with: receipts.receipts.receipts)
             } catch {
-                NSLog("Error decoding JSON data: \(error)")
+                NSLog("Error decoding JSON data on line \(#line): \(error)")
                 completion(error)
                 return
             }
@@ -149,7 +157,7 @@ class ReceiptController {
         }.resume()
     }
 
-    private func updateReceipts(with representations: [ReceiptRepresentation]) {
+    private func updateReceipts(with representations: [GetReceipt]) {
         let identifiersToFetch = representations.compactMap({ $0.identifier })
         
         let representationsByID = Dictionary(uniqueKeysWithValues: zip(identifiersToFetch, representations))
@@ -181,16 +189,15 @@ class ReceiptController {
         }
     }
 
-    private func update(receipt: Receipt, with receiptRepresentation: ReceiptRepresentation) {
+    private func update(receipt: Receipt, with receiptRepresentation: GetReceipt) {
+        guard let amount = Double(receiptRepresentation.amount) else { return }
         receipt.identifier = receiptRepresentation.identifier
         receipt.purchaseDate = receiptRepresentation.purchaseDate
         receipt.merchant = receiptRepresentation.merchant
-        receipt.amount = receiptRepresentation.amount
+        receipt.amount = amount
         receipt.notes = receiptRepresentation.notes
         receipt.createdAt = receiptRepresentation.createdAt
         receipt.updatedAt = receiptRepresentation.updatedAt
-        receipt.categoryId = receiptRepresentation.categoryId
-        receipt.tagName = receiptRepresentation.tagName
-        receipt.tagDescription = receiptRepresentation.tagDescription
+        receipt.categoryId = receiptRepresentation.categories[0].mainCategoryId
     }
 }

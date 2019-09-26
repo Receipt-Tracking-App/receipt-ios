@@ -111,7 +111,8 @@ class UserController {
             do {
                 self.bearer = try JSONDecoder().decode(Token.self, from: data)
                 if let bearer = self.bearer {
-                    print(bearer.token)
+                    self.user?.identifier = bearer.userId
+//                    print(bearer.token)
                 }
                 
             } catch {
