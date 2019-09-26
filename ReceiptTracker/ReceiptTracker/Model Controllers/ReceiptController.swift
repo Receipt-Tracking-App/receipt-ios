@@ -54,8 +54,16 @@ class ReceiptController {
     private func put(receipt: Receipt, completion: @escaping ((Error?) -> Void) = { _ in }) {
         let requestURL = baseURL.appendingPathComponent("receipts")
                                 .appendingPathComponent("\(receipt.identifier)")
+        
+        guard let bearer = UserController.shared.bearer else {
+            NSLog("Unable to derive token from bearer. Is user logged in?")
+            completion(NetworkError.noAuth)
+            return
+        }
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.put.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
         do {
             request.httpBody = try JSONEncoder().encode(receipt.postReceipt)
@@ -78,8 +86,16 @@ class ReceiptController {
     func deleteEntryFromServer(receipt: Receipt, completion: @escaping ((Error?) -> Void) = { _ in }) {
         let requestURL = baseURL.appendingPathComponent("receipts")
                                 .appendingPathComponent("\(receipt.identifier)")
+        
+        guard let bearer = UserController.shared.bearer else {
+            NSLog("Unable to derive token from bearer. Is user logged in?")
+            completion(NetworkError.noAuth)
+            return
+        }
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.delete.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
         URLSession.shared.dataTask(with: request) { (data, _, error) in
             if let error = error {
@@ -93,8 +109,20 @@ class ReceiptController {
 
     func fetchReceiptsFromServer(completion: @escaping ((Error?) -> Void) = { _ in }) {
         let requestURL = baseURL // .appendingPathComponent(identifier) TODO: Append userID
+        
+        guard let bearer = UserController.shared.bearer else {
+            NSLog("Unable to derive token from bearer. Is user logged in?")
+            completion(NetworkError.noAuth)
+            return
+        }
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.delete.rawValue
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
 
-        URLSession.shared.dataTask(with: requestURL) { (data, _, error) in
+        URLSession.shared.dataTask(with: request) { (data, _, error) in
             if let error = error {
                 NSLog("Error fetching receipts from server: \(error)")
                 completion(error)
@@ -149,7 +177,6 @@ class ReceiptController {
             } catch {
                 NSLog("Error fetching tasks for UUIDs: \(error)")
             }
-            
             CoreDataStack.shared.save(context: context)
         }
     }

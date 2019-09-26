@@ -13,7 +13,7 @@ public protocol ImagePickerDelegate: class {
     func didSelect(image: UIImage?)
 }
 
-open class ImagePicker: NSObject {
+open class ImagePicker: NSObject, UINavigationControllerDelegate {
     
     private let pickerController: UIImagePickerController
     private weak var presentationController: UIViewController?
@@ -85,8 +85,4 @@ extension ImagePicker: UIImagePickerControllerDelegate {
         }
         self.pickerController(picker, didSelect: image)
     }
-}
-
-extension ImagePicker: UINavigationControllerDelegate {
-    
 }
