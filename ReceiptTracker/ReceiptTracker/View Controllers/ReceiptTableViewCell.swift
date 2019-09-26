@@ -12,6 +12,7 @@ class ReceiptTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         updateViews()
+        setUI()
     }
     
     var receipt: Receipt? {
@@ -24,6 +25,13 @@ class ReceiptTableViewCell: UITableViewCell {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yyyy"
         return formatter
+    }
+    
+    func setUI() {
+        backgroundColor = .background
+        storeName.textColor = .text
+        amountLabel.textColor = .text
+        dateLabel.textColor = .text
     }
     
     func updateViews() {
