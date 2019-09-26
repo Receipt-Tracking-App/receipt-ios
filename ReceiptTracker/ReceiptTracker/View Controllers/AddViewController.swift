@@ -49,6 +49,9 @@ class AddViewController: UIViewController {
             purchaseDateTextField.text = receipt.purchaseDate
             purchaseAmountTextField.text = "\(receipt.amount)"
             addReceiptButton.setTitle("Update Receipt", for: .normal)
+            if let data = receipt.image {
+                receiptImageView.image = UIImage(data: data)
+            }
         }
     }
     
@@ -71,9 +74,17 @@ class AddViewController: UIViewController {
             let amountString = purchaseAmountTextField.text, let amount = Double(amountString) else { return }
         
         if let receipt = receipt {
-            receiptController.update(receipt: receipt, purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: 1)
+            if let image = receiptImageView.image, let imageData = image.pngData() {
+                receiptController.update(receipt: receipt, purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: 1, image: imageData)
+            } else {
+                receiptController.update(receipt: receipt, purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: 1)
+            }
         } else {
-            receiptController.createReceipt(purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: 1); #warning("Finish implementation in code and storyboard")
+            if let image = receiptImageView.image, let imageData = image.pngData() {
+                receiptController.createReceipt(purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: 1, image: imageData); #warning("Finish implementation in code and storyboard")
+            } else {
+                receiptController.createReceipt(purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: 1); #warning("Finish implementation in code and storyboard")
+            }
         }
     }
     

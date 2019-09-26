@@ -49,6 +49,7 @@
 		0E50793E23396A76003CDFDB /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		0E50794023396AB5003CDFDB /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		0E653CB1233C4AE2007905AC /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		0E653CB3233C5609007905AC /* ReceiptCoreData 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ReceiptCoreData 3.xcdatamodel"; sourceTree = "<group>"; };
 		63042CFA23392F45003EDA71 /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		634C545A233944920054183B /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		634C545F2339450A0054183B /* ReceiptController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptController.swift; sourceTree = "<group>"; };
@@ -484,10 +485,11 @@
 		634C5468233948530054183B /* ReceiptCoreData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				0E653CB3233C5609007905AC /* ReceiptCoreData 3.xcdatamodel */,
 				0E3555D5233BCF3100406DA9 /* ReceiptCoreData 2.xcdatamodel */,
 				634C5469233948530054183B /* ReceiptCoreData.xcdatamodel */,
 			);
-			currentVersion = 0E3555D5233BCF3100406DA9 /* ReceiptCoreData 2.xcdatamodel */;
+			currentVersion = 0E653CB3233C5609007905AC /* ReceiptCoreData 3.xcdatamodel */;
 			path = ReceiptCoreData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

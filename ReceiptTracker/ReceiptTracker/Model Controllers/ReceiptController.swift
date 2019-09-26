@@ -23,14 +23,14 @@ class ReceiptController {
         fetchReceiptsFromServer()
     }
 
-    func createReceipt(purchaseDate: Date, merchant: String, amount: Double, notes: String?, tagName: String?, tagDescription: String?, categoryId: Int16, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
-        let receipt = Receipt(purchaseDate: purchaseDate, merchant: merchant, amount: amount, notes: notes, tagName: tagName, tagDescription: tagDescription, categoryId: categoryId, createdAt: Date(), updatedAt: Date(), context: context)
+    func createReceipt(purchaseDate: Date, merchant: String, amount: Double, notes: String?, tagName: String?, tagDescription: String?, categoryId: Int16, image: Data? = nil, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
+        let receipt = Receipt(purchaseDate: purchaseDate, merchant: merchant, amount: amount, notes: notes, tagName: tagName, tagDescription: tagDescription, categoryId: categoryId, createdAt: Date(), updatedAt: Date(), image: image, context: context)
 
         put(receipt: receipt)
         CoreDataStack.shared.save()
     }
 
-    func update(receipt: Receipt, purchaseDate: Date, merchant: String, amount: Double, notes: String?, tagName: String?, tagDescription: String?, categoryId: Int16) {
+    func update(receipt: Receipt, purchaseDate: Date, merchant: String, amount: Double, notes: String?, tagName: String?, tagDescription: String?, categoryId: Int16, image: Data? = nil) {
         receipt.purchaseDate = dateFormatter.string(from: purchaseDate)
         receipt.merchant = merchant
         receipt.amount = amount
@@ -38,6 +38,7 @@ class ReceiptController {
         receipt.tagName = tagName
         receipt.tagDescription = tagDescription
         receipt.categoryId = categoryId
+        receipt.image = image
         receipt.updatedAt = dateFormatter.string(from: Date())
 
         put(receipt: receipt)
@@ -121,38 +122,35 @@ class ReceiptController {
     }
 
     private func updateReceipts(with representations: [ReceiptRepresentation]) {
-        //TODO: Remake updateReceipts function
-        
-        let receiptsWithID = representations.filter({$0.identifier != nil })
-        let identifiersToFetch = receiptsWithID.compactMap({ UUID(uuidString: $0.identifier )})
+        let identifiersToFetch = representations.compactMap({ $0.identifier })
         
         let representationsByID = Dictionary(uniqueKeysWithValues: zip(identifiersToFetch, representations))
         
         var receiptsToCreate = representationsByID
         
         let fetchRequest: NSFetchRequest<Receipt> = Receipt.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "identifier IN %0", identifiersToFetch)
+        fetchRequest.predicate = NSPredicate(format: "identifier IN %@", identifiersToFetch)
         
         let context = CoreDataStack.shared.container.newBackgroundContext()
         
         context.performAndWait {
-            
             do {
                 let existingReceipts = try context.fetch(fetchRequest)
                 
                 for receipt in existingReceipts {
-                    guard let id = receip.identifier,
-                    let identifier = UUID(uuidString: id),
-                        let representation = representationsByID[identifier] else { continue }
+                    guard let representation = representationsByID[receipt.identifier] else { continue }
                     self.update(receipt: receipt, with: representation)
-                    
-                    receiptsToCreate.removeValue(forKey: identifier)
+                    receiptsToCreate.removeValue(forKey: receipt.identifier)
                 }
-                
                 for representation in receiptsToCreate.values {
                     Receipt(receiptRepresentation: representation, context: context)
                 }
+                
+            } catch {
+                NSLog("Error fetching tasks for UUIDs: \(error)")
             }
+            
+            CoreDataStack.shared.save(context: context)
         }
     }
 
