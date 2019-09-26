@@ -32,6 +32,12 @@ class AddViewController: UIViewController {
             return formatter
         }()
     
+    var addDateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy"
+        return formatter
+    }; #warning("Delete after implementing UIDatePicker")
+    
     var receiptController: ReceiptController?
     var receipt: Receipt?
 
@@ -46,7 +52,7 @@ class AddViewController: UIViewController {
         if let receipt = receipt {
             title = receipt.merchant
             merchantTextField.text = receipt.merchant
-            purchaseDateTextField.text = receipt.purchaseDate
+            purchaseDateTextField.text = "\(addDateFormatter.string(from: dateFormatter.date(from: receipt.purchaseDate ?? "") ?? Date()))"
             purchaseAmountTextField.text = "\(receipt.amount)"
             addReceiptButton.setTitle("Update Receipt", for: .normal)
             if let data = receipt.image {
@@ -86,6 +92,7 @@ class AddViewController: UIViewController {
                 receiptController.createReceipt(purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: 1); #warning("Finish implementation in code and storyboard")
             }
         }
+        navigationController?.popViewController(animated: true)
     }
     
     
