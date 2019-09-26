@@ -122,6 +122,38 @@ class ReceiptController {
 
     private func updateReceipts(with representations: [ReceiptRepresentation]) {
         //TODO: Remake updateReceipts function
+        
+        let receiptsWithID = representations.filter({$0.identifier != nil })
+        let identifiersToFetch = receiptsWithID.compactMap({ UUID(uuidString: $0.identifier )})
+        
+        let representationsByID = Dictionary(uniqueKeysWithValues: zip(identifiersToFetch, representations))
+        
+        var receiptsToCreate = representationsByID
+        
+        let fetchRequest: NSFetchRequest<Receipt> = Receipt.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "identifier IN %0", identifiersToFetch)
+        
+        let context = CoreDataStack.shared.container.newBackgroundContext()
+        
+        context.performAndWait {
+            
+            do {
+                let existingReceipts = try context.fetch(fetchRequest)
+                
+                for receipt in existingReceipts {
+                    guard let id = receip.identifier,
+                    let identifier = UUID(uuidString: id),
+                        let representation = representationsByID[identifier] else { continue }
+                    self.update(receipt: receipt, with: representation)
+                    
+                    receiptsToCreate.removeValue(forKey: identifier)
+                }
+                
+                for representation in receiptsToCreate.values {
+                    Receipt(receiptRepresentation: representation, context: context)
+                }
+            }
+        }
     }
 
     private func update(receipt: Receipt, with receiptRepresentation: ReceiptRepresentation) {
