@@ -30,17 +30,17 @@ extension Receipt {
         self.image = image
     }
     
-    @discardableResult convenience init?(receiptRepresentation: ReceiptRepresentation, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
+    @discardableResult convenience init?(receiptRepresentation: GetReceipt, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         self.init(context: context)
         
-        self.identifier = receiptRepresentation.identifier
+        guard let amount = Double(receiptRepresentation.amount) else { return }
+        
+        self.identifier = Int32(receiptRepresentation.identifier)
         self.purchaseDate = receiptRepresentation.purchaseDate
         self.merchant = receiptRepresentation.merchant
-        self.amount = receiptRepresentation.amount
+        self.amount = amount
         self.notes = receiptRepresentation.notes
-        self.tagName = receiptRepresentation.tagName
-        self.tagDescription = receiptRepresentation.tagDescription
-        self.categoryId = receiptRepresentation.categoryId
+        self.categoryId = Int16(receiptRepresentation.categories[0].mainCategoryId)
         self.createdAt = receiptRepresentation.createdAt
         self.updatedAt = receiptRepresentation.updatedAt
     }
