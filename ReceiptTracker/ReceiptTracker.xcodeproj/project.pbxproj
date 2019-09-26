@@ -33,6 +33,7 @@
 		634C547D233991740054183B /* ReceiptTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C547C233991740054183B /* ReceiptTableViewController.swift */; };
 		634C547F2339918E0054183B /* ReceiptTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C547E2339918E0054183B /* ReceiptTableViewCell.swift */; };
 		634C549A233D4C3E0054183B /* LoginViewUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C5499233D4C3E0054183B /* LoginViewUI.swift */; };
+		634C549C233D5ECE0054183B /* Category+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C549B233D5ECE0054183B /* Category+Convenience.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +86,7 @@
 		634C5492233D33EF0054183B /* Poppins-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BoldItalic.ttf"; sourceTree = "<group>"; };
 		634C5493233D33EF0054183B /* Poppins-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BlackItalic.ttf"; sourceTree = "<group>"; };
 		634C5499233D4C3E0054183B /* LoginViewUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewUI.swift; sourceTree = "<group>"; };
+		634C549B233D5ECE0054183B /* Category+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+Convenience.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				634C546C233948B00054183B /* Receipt+Convenience.swift */,
+				634C549B233D5ECE0054183B /* Category+Convenience.swift */,
 				634C546E233948CF0054183B /* ReceiptRepresentation.swift */,
 				0E50793A2339636E003CDFDB /* User+Convenience.swift */,
 				0E50793C23396733003CDFDB /* UserRepresentation.swift */,
@@ -326,6 +329,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				634C549C233D5ECE0054183B /* Category+Convenience.swift in Sources */,
 				634C547F2339918E0054183B /* ReceiptTableViewCell.swift in Sources */,
 				0E3555D7233BFF2600406DA9 /* Colors.swift in Sources */,
 				0E50794123396AB5003CDFDB /* UserController.swift in Sources */,
