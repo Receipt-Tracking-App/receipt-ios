@@ -13,11 +13,7 @@ extension Receipt {
     convenience init(purchaseDate: Date, merchant: String, amount: Double, notes: String?, tagName: String?, tagDescription: String?, categoryId: Int16, createdAt: Date, updatedAt: Date, image: Data? = nil, context: NSManagedObjectContext) {
         self.init(context: context)
         
-        if let identifier = Int32("\(Int.random(in: 1...2_147))\(Int.random(in: 1...483_647)))") {
-            self.identifier = identifier
-        } else {
-            self.identifier = Int32.random(in: 1...2_147_483_647)
-        }
+        self.identifier = identifier
         self.purchaseDate = dateFormatter.string(from: purchaseDate)
         self.merchant = merchant
         self.amount = amount
