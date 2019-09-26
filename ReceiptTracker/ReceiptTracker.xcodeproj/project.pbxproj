@@ -17,6 +17,7 @@
 		0E50793D23396733003CDFDB /* UserRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50793C23396733003CDFDB /* UserRepresentation.swift */; };
 		0E50793F23396A76003CDFDB /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50793E23396A76003CDFDB /* Token.swift */; };
 		0E50794123396AB5003CDFDB /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50794023396AB5003CDFDB /* UserController.swift */; };
+		0E653CB2233C4AE2007905AC /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E653CB1233C4AE2007905AC /* ImagePicker.swift */; };
 		63042CFB23392F45003EDA71 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63042CFA23392F45003EDA71 /* Register.storyboard */; };
 		634C545B233944920054183B /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C545A233944920054183B /* AddViewController.swift */; };
 		634C54602339450A0054183B /* ReceiptController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C545F2339450A0054183B /* ReceiptController.swift */; };
@@ -47,6 +48,7 @@
 		0E50793C23396733003CDFDB /* UserRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepresentation.swift; sourceTree = "<group>"; };
 		0E50793E23396A76003CDFDB /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		0E50794023396AB5003CDFDB /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		0E653CB1233C4AE2007905AC /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		63042CFA23392F45003EDA71 /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		634C545A233944920054183B /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		634C545F2339450A0054183B /* ReceiptController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptController.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 			children = (
 				0E3555D2233BCD6400406DA9 /* DateFormatter.swift */,
 				0E3555D6233BFF2600406DA9 /* Colors.swift */,
+				0E653CB1233C4AE2007905AC /* ImagePicker.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				634C547F2339918E0054183B /* ReceiptTableViewCell.swift in Sources */,
 				0E3555D7233BFF2600406DA9 /* Colors.swift in Sources */,
 				0E50794123396AB5003CDFDB /* UserController.swift in Sources */,
+				0E653CB2233C4AE2007905AC /* ImagePicker.swift in Sources */,
 				634C546D233948B00054183B /* Receipt+Convenience.swift in Sources */,
 				634C54602339450A0054183B /* ReceiptController.swift in Sources */,
 				634C545B233944920054183B /* AddViewController.swift in Sources */,

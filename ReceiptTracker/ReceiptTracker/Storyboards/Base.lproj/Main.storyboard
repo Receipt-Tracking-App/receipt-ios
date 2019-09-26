@@ -200,7 +200,7 @@
                         <outlet property="purchaseAmountTextField" destination="mtU-mQ-MSq" id="eaX-v0-Qqm"/>
                         <outlet property="purchaseDateTextField" destination="LXr-pp-QNf" id="B97-zo-SYD"/>
                         <outlet property="receiptDetailsLabel" destination="HBB-fT-qWk" id="fZh-Oc-1rm"/>
-                        <outlet property="receiptImageView" destination="1TE-xP-8oc" id="zfi-i2-aXJ"/>
+                        <outlet property="receiptImageView" destination="Tsw-XO-XW0" id="KV1-5H-M71"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TRI-Z6-vIM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
