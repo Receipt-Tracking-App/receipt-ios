@@ -147,11 +147,11 @@
                                     <constraint firstItem="p72-yO-d0W" firstAttribute="leading" secondItem="6t3-s5-cDR" secondAttribute="leading" constant="30" id="QpK-UY-bln"/>
                                     <constraint firstItem="LXr-pp-QNf" firstAttribute="leading" secondItem="6t3-s5-cDR" secondAttribute="leading" constant="30" id="S7h-bs-dLz"/>
                                     <constraint firstItem="Gh1-fa-j3F" firstAttribute="leading" secondItem="6t3-s5-cDR" secondAttribute="leading" constant="30" id="WFA-MT-XCy"/>
-                                    <constraint firstAttribute="trailing" secondItem="LXr-pp-QNf" secondAttribute="trailing" constant="160" id="Wei-Lc-FrM"/>
+                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="LXr-pp-QNf" secondAttribute="trailing" constant="160" id="Wei-Lc-FrM"/>
                                     <constraint firstItem="LXr-pp-QNf" firstAttribute="top" secondItem="p72-yO-d0W" secondAttribute="bottom" constant="20" id="auz-a7-YL8"/>
-                                    <constraint firstAttribute="trailing" secondItem="p72-yO-d0W" secondAttribute="trailing" constant="100" id="h22-G0-BX7"/>
-                                    <constraint firstAttribute="trailing" secondItem="Gh1-fa-j3F" secondAttribute="trailing" constant="100" id="mx1-zi-hvu"/>
-                                    <constraint firstAttribute="trailing" secondItem="mtU-mQ-MSq" secondAttribute="trailing" constant="160" id="nYk-NG-dQs"/>
+                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="p72-yO-d0W" secondAttribute="trailing" constant="100" id="h22-G0-BX7"/>
+                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Gh1-fa-j3F" secondAttribute="trailing" constant="100" id="mx1-zi-hvu"/>
+                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="mtU-mQ-MSq" secondAttribute="trailing" constant="160" id="nYk-NG-dQs"/>
                                     <constraint firstItem="p72-yO-d0W" firstAttribute="top" secondItem="Gh1-fa-j3F" secondAttribute="bottom" constant="20" id="wrO-Zn-cW8"/>
                                 </constraints>
                             </view>
@@ -166,7 +166,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Receipt Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HBB-fT-qWk">
-                                <rect key="frame" x="30" y="423" width="170" height="29"/>
+                                <rect key="frame" x="30" y="423" width="169.5" height="29"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -180,6 +180,7 @@
                             <constraint firstItem="ksd-Nd-pYh" firstAttribute="top" secondItem="Tsw-XO-XW0" secondAttribute="bottom" constant="8" id="2HW-Mh-SXQ"/>
                             <constraint firstItem="He8-vm-wwy" firstAttribute="bottom" secondItem="6t3-s5-cDR" secondAttribute="bottom" constant="80" id="7zh-5p-u3S"/>
                             <constraint firstItem="ksd-Nd-pYh" firstAttribute="top" secondItem="Tsw-XO-XW0" secondAttribute="bottom" constant="8" id="Csn-an-eXG"/>
+                            <constraint firstItem="He8-vm-wwy" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="HBB-fT-qWk" secondAttribute="trailing" constant="30" id="D8n-AH-DLa"/>
                             <constraint firstItem="He8-vm-wwy" firstAttribute="trailing" secondItem="ksd-Nd-pYh" secondAttribute="trailing" constant="130" id="D8t-uN-8EX"/>
                             <constraint firstItem="Tsw-XO-XW0" firstAttribute="top" secondItem="He8-vm-wwy" secondAttribute="top" constant="50" id="KVx-Re-sk2"/>
                             <constraint firstItem="He8-vm-wwy" firstAttribute="trailing" secondItem="6t3-s5-cDR" secondAttribute="trailing" constant="30" id="MGe-Z7-Yl2"/>
