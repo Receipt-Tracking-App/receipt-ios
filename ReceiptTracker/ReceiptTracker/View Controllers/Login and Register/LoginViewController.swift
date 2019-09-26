@@ -22,22 +22,24 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signIn(_ sender: UIButton) {
-        guard let username = usernameTextField.text, let password = passwordTextField.text else {
-//            let alert = UIAlertController(title: "Unable to log in", message: "One or more fields is empty. All fields are required.", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-//            present(alert, animated: true, completion: nil)
-            
-            return
-        }
+        guard let username = usernameTextField.text, let password = passwordTextField.text else { return }
         
         let currentUser = UserLogin(userId: username, password: password)
         UserController.shared.login(with: currentUser) { (error) in
             if let error = error {
                 NSLog("Unable to log in: \(error)")
                 
-//                let alert = UIAlertController(title: "Unable to log in", message: "There was a network error. Please make sure you have a strong connection.", preferredStyle: .alert)
-//                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-//                self.present(alert, animated: true, completion: nil)
+                let alert = UIAlertController(title: "Unable to log in", message: "Incorrect username and/or password. Please try again.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                
+                DispatchQueue.main.async {
+                    self.present(alert, animated: true, completion: nil)
+                }
+
+            } else {
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "LoginSuccessfulSegue", sender: self)
+                }
             }
         }
     }
