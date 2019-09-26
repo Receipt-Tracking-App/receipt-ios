@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 extension Receipt {
-    convenience init(purchaseDate: Date, merchant: String, amount: Double, notes: String?, tagName: String?, tagDescription: String?, categoryId: Int16, createdAt: Date, updatedAt: Date, context: NSManagedObjectContext) {
+    convenience init(purchaseDate: Date, merchant: String, amount: Double, notes: String?, tagName: String?, tagDescription: String?, categoryId: Int16, createdAt: Date, updatedAt: Date, image: Data? = nil, context: NSManagedObjectContext) {
         self.init(context: context)
         
         if let identifier = Int32("\(Int.random(in: 1...2_147))\(Int.random(in: 1...483_647)))") {
@@ -27,6 +27,7 @@ extension Receipt {
         self.categoryId = categoryId
         self.createdAt = dateFormatter.string(from: createdAt)
         self.updatedAt = dateFormatter.string(from: updatedAt)
+        self.image = image
     }
     
     @discardableResult convenience init?(receiptRepresentation: ReceiptRepresentation, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {

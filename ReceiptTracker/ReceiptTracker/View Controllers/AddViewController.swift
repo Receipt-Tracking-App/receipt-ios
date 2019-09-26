@@ -16,6 +16,7 @@ class AddViewController: UIViewController {
     @IBOutlet weak var purchaseAmountTextField: UITextField!
     @IBOutlet weak var addReceiptButton: UIButton!
     @IBOutlet weak var receiptDetailsLabel: UILabel!
+    @IBOutlet weak var categoryPicker: UIPickerView!
     
     var imagePicker: ImagePicker!
     
@@ -32,6 +33,12 @@ class AddViewController: UIViewController {
             return formatter
         }()
     
+    var addDateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy"
+        return formatter
+    }; #warning("Delete after implementing UIDatePicker")
+    
     var receiptController: ReceiptController?
     var receipt: Receipt?
 
@@ -46,9 +53,12 @@ class AddViewController: UIViewController {
         if let receipt = receipt {
             title = receipt.merchant
             merchantTextField.text = receipt.merchant
-            purchaseDateTextField.text = receipt.purchaseDate
+            purchaseDateTextField.text = "\(addDateFormatter.string(from: dateFormatter.date(from: receipt.purchaseDate ?? "") ?? Date()))"
             purchaseAmountTextField.text = "\(receipt.amount)"
             addReceiptButton.setTitle("Update Receipt", for: .normal)
+            if let data = receipt.image {
+                receiptImageView.image = UIImage(data: data)
+            }
         }
     }
     
@@ -71,10 +81,19 @@ class AddViewController: UIViewController {
             let amountString = purchaseAmountTextField.text, let amount = Double(amountString) else { return }
         
         if let receipt = receipt {
-            receiptController.update(receipt: receipt, purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: 1)
+            if let image = receiptImageView.image, let imageData = image.pngData() {
+                receiptController.update(receipt: receipt, purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: 1, image: imageData)
+            } else {
+                receiptController.update(receipt: receipt, purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: 1)
+            }
         } else {
-            receiptController.createReceipt(purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: 1); #warning("Finish implementation in code and storyboard")
+            if let image = receiptImageView.image, let imageData = image.pngData() {
+                receiptController.createReceipt(purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: 1, image: imageData); #warning("Finish implementation in code and storyboard")
+            } else {
+                receiptController.createReceipt(purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: 1); #warning("Finish implementation in code and storyboard")
+            }
         }
+        navigationController?.popViewController(animated: true)
     }
     
     

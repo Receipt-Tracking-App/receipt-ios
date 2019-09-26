@@ -15,7 +15,7 @@ enum NetworkError: Error {
     case otherError(Error)
     case noData
     case badDecode
-    case noToken
+    case noAuth
 }
 
 enum LoginType: String {
