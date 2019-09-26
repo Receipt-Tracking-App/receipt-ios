@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0E3555D3233BCD6400406DA9 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3555D2233BCD6400406DA9 /* DateFormatter.swift */; };
+		0E3555D7233BFF2600406DA9 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3555D6233BFF2600406DA9 /* Colors.swift */; };
 		0E50791123382023003CDFDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50791023382023003CDFDB /* AppDelegate.swift */; };
 		0E50791623382023003CDFDB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E50791423382023003CDFDB /* Main.storyboard */; };
 		0E50791823382024003CDFDB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E50791723382024003CDFDB /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 		0E50793D23396733003CDFDB /* UserRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50793C23396733003CDFDB /* UserRepresentation.swift */; };
 		0E50793F23396A76003CDFDB /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50793E23396A76003CDFDB /* Token.swift */; };
 		0E50794123396AB5003CDFDB /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50794023396AB5003CDFDB /* UserController.swift */; };
+		0E653CB2233C4AE2007905AC /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E653CB1233C4AE2007905AC /* ImagePicker.swift */; };
 		63042CFB23392F45003EDA71 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63042CFA23392F45003EDA71 /* Register.storyboard */; };
 		634C545B233944920054183B /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C545A233944920054183B /* AddViewController.swift */; };
 		634C54602339450A0054183B /* ReceiptController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C545F2339450A0054183B /* ReceiptController.swift */; };
@@ -35,6 +37,7 @@
 /* Begin PBXFileReference section */
 		0E3555D2233BCD6400406DA9 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		0E3555D5233BCF3100406DA9 /* ReceiptCoreData 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ReceiptCoreData 2.xcdatamodel"; sourceTree = "<group>"; };
+		0E3555D6233BFF2600406DA9 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		0E50790D23382023003CDFDB /* ReceiptTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReceiptTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E50791023382023003CDFDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E50791523382023003CDFDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -45,6 +48,8 @@
 		0E50793C23396733003CDFDB /* UserRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepresentation.swift; sourceTree = "<group>"; };
 		0E50793E23396A76003CDFDB /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		0E50794023396AB5003CDFDB /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		0E653CB1233C4AE2007905AC /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		0E653CB3233C5609007905AC /* ReceiptCoreData 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ReceiptCoreData 3.xcdatamodel"; sourceTree = "<group>"; };
 		63042CFA23392F45003EDA71 /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		634C545A233944920054183B /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		634C545F2339450A0054183B /* ReceiptController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptController.swift; sourceTree = "<group>"; };
@@ -76,6 +81,8 @@
 			isa = PBXGroup;
 			children = (
 				0E3555D2233BCD6400406DA9 /* DateFormatter.swift */,
+				0E3555D6233BFF2600406DA9 /* Colors.swift */,
+				0E653CB1233C4AE2007905AC /* ImagePicker.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -256,7 +263,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				634C547F2339918E0054183B /* ReceiptTableViewCell.swift in Sources */,
+				0E3555D7233BFF2600406DA9 /* Colors.swift in Sources */,
 				0E50794123396AB5003CDFDB /* UserController.swift in Sources */,
+				0E653CB2233C4AE2007905AC /* ImagePicker.swift in Sources */,
 				634C546D233948B00054183B /* Receipt+Convenience.swift in Sources */,
 				634C54602339450A0054183B /* ReceiptController.swift in Sources */,
 				634C545B233944920054183B /* AddViewController.swift in Sources */,
@@ -476,10 +485,11 @@
 		634C5468233948530054183B /* ReceiptCoreData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				0E653CB3233C5609007905AC /* ReceiptCoreData 3.xcdatamodel */,
 				0E3555D5233BCF3100406DA9 /* ReceiptCoreData 2.xcdatamodel */,
 				634C5469233948530054183B /* ReceiptCoreData.xcdatamodel */,
 			);
-			currentVersion = 0E3555D5233BCF3100406DA9 /* ReceiptCoreData 2.xcdatamodel */;
+			currentVersion = 0E653CB3233C5609007905AC /* ReceiptCoreData 3.xcdatamodel */;
 			path = ReceiptCoreData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

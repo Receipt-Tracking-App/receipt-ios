@@ -10,27 +10,25 @@ import UIKit
 
 class AddViewController: UIViewController {
     
-    @IBOutlet var receiptImageView: UIView!
+    @IBOutlet var receiptImageView: UIImageView!
     @IBOutlet weak var merchantTextField: UITextField!
     @IBOutlet weak var purchaseDateTextField: UITextField!
     @IBOutlet weak var purchaseAmountTextField: UITextField!
     @IBOutlet weak var addReceiptButton: UIButton!
+    @IBOutlet weak var receiptDetailsLabel: UILabel!
+    
+    var imagePicker: ImagePicker!
+    
     lazy var currencyFormatter: NumberFormatter = {
-            
             let formatter = NumberFormatter()
-            
             formatter.numberStyle = .currency
-            
             formatter.locale = Locale(identifier: "en_US")
             
     //        formatter.currencyCode = "USD"
             
             formatter.currencySymbol = "$"
-            
             formatter.maximumFractionDigits = 2
-            
             formatter.minimumFractionDigits = 2
-            
             return formatter
         }()
     
@@ -39,6 +37,9 @@ class AddViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
+        
+        setUI()
         
         purchaseAmountTextField.placeholder = currencyFormatter.string(from: NSNumber(value: 0))
         
@@ -48,11 +49,24 @@ class AddViewController: UIViewController {
             purchaseDateTextField.text = receipt.purchaseDate
             purchaseAmountTextField.text = "\(receipt.amount)"
             addReceiptButton.setTitle("Update Receipt", for: .normal)
+            if let data = receipt.image {
+                receiptImageView.image = UIImage(data: data)
+            }
         }
     }
     
+    func setUI() {
+        navigationController?.navigationBar.barTintColor = .background
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.text]
+        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.text]
+        navigationController?.navigationBar.tintColor = .text
+        
+        view.backgroundColor = .background
+        receiptDetailsLabel.textColor = .text
+    }
+    
     @IBAction func addPhoto(_ sender: UIButton) {
-        // TODO: Implement addPhoto
+        self.imagePicker.present(from: sender)
     }
     
     @IBAction func addReceipt(_ sender: UIButton) {
@@ -60,9 +74,17 @@ class AddViewController: UIViewController {
             let amountString = purchaseAmountTextField.text, let amount = Double(amountString) else { return }
         
         if let receipt = receipt {
-            receiptController.update(receipt: receipt, purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: 1)
+            if let image = receiptImageView.image, let imageData = image.pngData() {
+                receiptController.update(receipt: receipt, purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: 1, image: imageData)
+            } else {
+                receiptController.update(receipt: receipt, purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: 1)
+            }
         } else {
-            receiptController.createReceipt(purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: 1); #warning("Finish implementation in code and storyboard")
+            if let image = receiptImageView.image, let imageData = image.pngData() {
+                receiptController.createReceipt(purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: 1, image: imageData); #warning("Finish implementation in code and storyboard")
+            } else {
+                receiptController.createReceipt(purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: 1); #warning("Finish implementation in code and storyboard")
+            }
         }
     }
     
@@ -77,4 +99,10 @@ class AddViewController: UIViewController {
     }
     */
 
+}
+
+extension AddViewController: ImagePickerDelegate {
+    func didSelect(image: UIImage?) {
+        self.receiptImageView.image = image
+    }
 }
