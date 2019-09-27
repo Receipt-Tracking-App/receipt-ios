@@ -51,8 +51,14 @@ class CreateAccountViewController: UIViewController {
                 NSLog("Unable to create account: \(error)")
                 
                 DispatchQueue.main.async {
-                    let alert = UIAlertController(title: "Unable to create account", message: "There was a network error. Please make sure you have a strong connection.", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                    var alert = UIAlertController()
+                    if error.rawValue == NetworkError.invalidInput.rawValue {
+                        alert = UIAlertController(title: "Unable to create account", message: "This username or email is taken. Please log in, or use a different email/username.", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                    } else if error.rawValue == NetworkError.badResponse.rawValue {
+                        alert = UIAlertController(title: "Unable to create account", message: "There was a network error. Please make sure you have a strong connection.", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                    }
                     self.present(alert, animated: true, completion: nil)
                 }
             } else  {

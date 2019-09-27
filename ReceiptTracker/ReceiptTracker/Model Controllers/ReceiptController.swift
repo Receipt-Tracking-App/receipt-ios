@@ -52,7 +52,7 @@ class ReceiptController {
         CoreDataStack.shared.save()
     }
 
-    private func post(receipt: Receipt, completion: @escaping ((Error?) -> Void) = { _ in }) {
+    private func post(receipt: Receipt, completion: @escaping ((NetworkError?) -> Void) = { _ in }) {
         let requestURL = baseURL.appendingPathComponent("receipts")
         
         guard let bearer = UserController.shared.bearer else {
@@ -69,7 +69,7 @@ class ReceiptController {
             request.httpBody = try JSONEncoder().encode(receipt.postReceipt)
         } catch {
             NSLog("Error encoding Receipt: \(error)")
-            completion(error)
+            completion(.otherError)
             return
         }
 
@@ -83,7 +83,7 @@ class ReceiptController {
             
             if let error = error {
                 NSLog("Error POSTing receipt to server: \(error)")
-                completion(error)
+                completion(.otherError)
                 return
             }
             
@@ -103,7 +103,7 @@ class ReceiptController {
         }.resume()
     }
     
-    private func putUpdate(receipt: Receipt, completion: @escaping ((Error?) -> Void) = { _ in }) {
+    private func putUpdate(receipt: Receipt, completion: @escaping ((NetworkError?) -> Void) = { _ in }) {
         let requestURL = baseURL.appendingPathComponent("receipts")
                                 .appendingPathComponent("\(receipt.identifier)")
         
@@ -121,7 +121,7 @@ class ReceiptController {
             request.httpBody = try JSONEncoder().encode(receipt.postReceipt)
         } catch {
             NSLog("Error encoding Receipt: \(error)")
-            completion(error)
+            completion(.otherError)
             return
         }
         
@@ -135,20 +135,20 @@ class ReceiptController {
             
             if let error = error {
                 NSLog("Error POSTing receipt to server: \(error)")
-                completion(error)
+                completion(.otherError)
                 return
             }
             completion(nil)
         }.resume()
     }
 
-    func deleteReceiptFromServer(receipt: Receipt, completion: @escaping ((Error?) -> Void) = { _ in }) {
+    func deleteReceiptFromServer(receipt: Receipt, completion: @escaping ((NetworkError?) -> Void) = { _ in }) {
         let requestURL = baseURL.appendingPathComponent("receipts")
                                 .appendingPathComponent("\(receipt.identifier)")
         
         guard let bearer = UserController.shared.bearer else {
             NSLog("Unable to derive token from bearer. Is user logged in?")
-            completion(NetworkError.noAuth)
+            completion(.noAuth)
             return
         }
         var request = URLRequest(url: requestURL)
@@ -166,7 +166,7 @@ class ReceiptController {
             
             if let error = error {
                 NSLog("Error deleting receipt from server: \(error)")
-                completion(error)
+                completion(.otherError)
                 return
             }
             completion(nil)
@@ -174,10 +174,10 @@ class ReceiptController {
     }
 
     // Not working
-    func fetchReceiptsFromServer(completion: @escaping ((Error?) -> Void) = { _ in }) {
+    func fetchReceiptsFromServer(completion: @escaping ((NetworkError?) -> Void) = { _ in }) {
         guard let bearer = UserController.shared.bearer else {
             NSLog("Unable to derive token from bearer. Is user logged in?")
-            completion(NetworkError.noAuth)
+            completion(.noAuth)
             return
         }
         
@@ -203,13 +203,13 @@ class ReceiptController {
             
             if let error = error {
                 NSLog("Error fetching receipts from server: \(error)")
-                completion(error)
+                completion(.otherError)
                 return
             }
 
             guard let data = data else {
                 NSLog("No data returned from data task")
-                completion(NSError())
+                completion(.noData)
                 return
             }
 
@@ -221,7 +221,7 @@ class ReceiptController {
                 self.updateReceipts(with: receipts.receipts.receipts)
             } catch {
                 NSLog("Error decoding JSON data on line \(#line): \(error)")
-                completion(error)
+                completion(.badDecode)
                 return
             }
             completion(nil)

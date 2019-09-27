@@ -9,10 +9,11 @@
 import Foundation
 import CoreData
 
-enum NetworkError: Error {
+enum NetworkError: String {
+    
     case encodingError
     case badResponse
-    case otherError(Error)
+    case otherError
     case noData
     case badDecode
     case noAuth
@@ -55,16 +56,21 @@ class UserController {
         }
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let response = response as? HTTPURLResponse,
-                response.statusCode != 200 {
-                print("Status code \(response.statusCode). Username/password/email taken")
-                completion(.invalidInput)
-                return
+            if let response = response as? HTTPURLResponse {
+                if response.statusCode == 400 {
+                    print("Status code \(response.statusCode). Username/password/email taken")
+                    completion(.invalidInput)
+                    return
+                } else if response.statusCode != 201 {
+                    print("Status code \(response.statusCode). Username/password/email taken")
+                    completion(.badResponse)
+                    return
+                }
             }
             
             if let error = error {
                 NSLog("Error creating user on server: \(error)")
-                completion(.otherError(error))
+                completion(.otherError)
                 return
             }
             
@@ -116,7 +122,7 @@ class UserController {
             
             if let error = error {
                 NSLog("Error logging in: \(error)")
-                completion(.otherError(error))
+                completion(.otherError)
                 return
             }
             

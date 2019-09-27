@@ -271,7 +271,7 @@
                                 <color key="tintColor" red="0.26274509800000001" green="0.18823529410000001" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Next"/>
                                 <connections>
-                                    <segue destination="ZIG-xo-eoT" kind="presentation" id="SA9-a0-3RC"/>
+                                    <segue destination="ZIG-xo-eoT" kind="show" id="SA9-a0-3RC"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan receipts and add them to your account" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9h0-5r-ej7">
@@ -340,7 +340,7 @@
                                 <color key="tintColor" red="0.26274509800000001" green="0.18823529410000001" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Next"/>
                                 <connections>
-                                    <segue destination="79G-c5-leO" kind="presentation" id="Je0-vN-fGo"/>
+                                    <segue destination="79G-c5-leO" kind="show" id="Je0-vN-fGo"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search for all your saved receipts in a matter of seconds!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kqd-us-Hkg">
@@ -399,7 +399,7 @@
                                 <color key="tintColor" red="0.26274509800000001" green="0.18823529410000001" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Start Tracking"/>
                                 <connections>
-                                    <segue destination="w0m-UH-Fg1" kind="presentation" id="9nA-Wr-Hdg"/>
+                                    <segue destination="w0m-UH-Fg1" kind="show" id="9nA-Wr-Hdg"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Organize and condense your receipt tracking!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJM-7L-pbI">
