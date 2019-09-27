@@ -13,9 +13,6 @@ extension Receipt {
     convenience init(purchaseDate: Date, merchant: String, amount: Double, notes: String?, tagName: String?, tagDescription: String?, category: ReceiptCategory, createdAt: Date, updatedAt: Date, image: Data? = nil, context: NSManagedObjectContext) {
         self.init(context: context)
         
-      
-        
-        self.identifier = identifier
         self.purchaseDate = dateFormatter.string(from: purchaseDate)
         self.merchant = merchant
         self.amount = amount

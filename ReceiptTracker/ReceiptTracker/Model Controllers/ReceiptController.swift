@@ -42,7 +42,7 @@ class ReceiptController {
         receipt.image = image
         receipt.updatedAt = dateFormatter.string(from: Date())
 
-        post(receipt: receipt)
+        putUpdate(receipt: receipt)
         CoreDataStack.shared.save()
     }
 
@@ -52,11 +52,8 @@ class ReceiptController {
         CoreDataStack.shared.save()
     }
 
-    
-    // Not working
     private func post(receipt: Receipt, completion: @escaping ((Error?) -> Void) = { _ in }) {
         let requestURL = baseURL.appendingPathComponent("receipts")
-                                .appendingPathComponent("\(receipt.identifier)")
         
         guard let bearer = UserController.shared.bearer else {
             NSLog("Unable to derive token from bearer. Is user logged in?")
@@ -65,8 +62,8 @@ class ReceiptController {
         }
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post.rawValue
-        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
 
         do {
             request.httpBody = try JSONEncoder().encode(receipt.postReceipt)
@@ -79,7 +76,7 @@ class ReceiptController {
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
-                print("Status code \(response.statusCode)")
+                print("Status code from post \(response.statusCode)")
                 completion(nil)
                 return
             }
@@ -101,6 +98,45 @@ class ReceiptController {
                 receipt.identifier = id.receiptId
             } catch {
                 NSLog("Unable to decode from JSON on line \(#line) with error: \(error)")
+            }
+            completion(nil)
+        }.resume()
+    }
+    
+    private func putUpdate(receipt: Receipt, completion: @escaping ((Error?) -> Void) = { _ in }) {
+        let requestURL = baseURL.appendingPathComponent("receipts")
+                                .appendingPathComponent("\(receipt.identifier)")
+        
+        guard let bearer = UserController.shared.bearer else {
+            NSLog("Unable to derive token from bearer. Is user logged in?")
+            completion(NetworkError.noAuth)
+            return
+        }
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.put.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        do {
+            request.httpBody = try JSONEncoder().encode(receipt.postReceipt)
+        } catch {
+            NSLog("Error encoding Receipt: \(error)")
+            completion(error)
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                print("Status code from putUpdate\(response.statusCode)")
+                completion(nil)
+                return
+            }
+            
+            if let error = error {
+                NSLog("Error POSTing receipt to server: \(error)")
+                completion(error)
+                return
             }
             completion(nil)
         }.resume()
@@ -185,56 +221,24 @@ class ReceiptController {
         }.resume()
     }
 
-    private func updateReceipts(with representations: [GetReceipt]) {
-        let upperBound = representations.count-1
-        
-        if upperBound >= 0 {
-            for i in 0...upperBound {
-                if let receipt = self.fetchSingleReceiptFromPersistentStore(receiptID: representations[i].identifier) {
-                    
-                    if receipt.purchaseDate != representations[i].purchaseDate ||
-                        receipt.merchant != representations[i].merchant ||
-                        receipt.amount != Double(representations[i].amount) ||
-                        receipt.notes != representations[i].notes ||
-                        receipt.createdAt != representations[i].createdAt ||
-                        receipt.updatedAt != representations[i].updatedAt ||
-                        (receipt.category?[0] as? ReceiptCategory)?.id != representations[i].categories[0].mainCategoryId {
-                        self.update(receipt: receipt, with: representations[i])
+    private func updateReceipts(with representations: [GetReceipt], context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
+        context.performAndWait {
+            for receiptRep in representations {
+                let receipt = fetchSingleReceiptFromPersistentStore(receiptID: receiptRep.identifier)
+                
+                if let receipt = receipt {
+                    if receipt.purchaseDate != receiptRep.purchaseDate ||
+                        receipt.merchant != receiptRep.merchant ||
+                        receipt.amount != Double(receiptRep.amount) ||
+                        receipt.notes != receiptRep.notes ||
+                        receipt.createdAt != receiptRep.createdAt ||
+                        receipt.updatedAt != receiptRep.updatedAt {
+                        self.update(receipt: receipt, with: receiptRep)
                     }
                 } else {
-                    self.createReceipt(purchaseDate: dateFormatter.date(from: representations[i].purchaseDate) ?? Date(), merchant: representations[i].merchant, amount: Double(representations[i].amount) ?? 0.0, notes: representations[i].notes, tagName: nil, tagDescription: nil, category: ReceiptCategory(name: "", id: representations[i].categories[0].mainCategoryId))
+                    Receipt(receiptRepresentation: receiptRep)
                 }
             }
-        }
-        
-        let identifiersToFetch = representations.compactMap({ $0.identifier })
-        
-        let representationsByID = Dictionary(uniqueKeysWithValues: zip(identifiersToFetch, representations))
-        
-        var receiptsToCreate = representationsByID
-        
-        let fetchRequest: NSFetchRequest<Receipt> = Receipt.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "identifier IN %@", identifiersToFetch)
-        
-        let context = CoreDataStack.shared.container.newBackgroundContext()
-        
-        context.performAndWait {
-            do {
-                let existingReceipts = try context.fetch(fetchRequest)
-                
-                for receipt in existingReceipts {
-                    guard let representation = representationsByID[receipt.identifier] else { continue }
-                    self.update(receipt: receipt, with: representation)
-                    receiptsToCreate.removeValue(forKey: receipt.identifier)
-                }
-                for representation in receiptsToCreate.values {
-                    Receipt(receiptRepresentation: representation, context: context)
-                }
-                
-            } catch {
-                NSLog("Error fetching tasks for UUIDs: \(error)")
-            }
-            CoreDataStack.shared.save(context: context)
         }
     }
     
