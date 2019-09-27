@@ -45,6 +45,8 @@ class AddViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
+        self.categoryPicker.delegate = self
+        self.categoryPicker.dataSource = self
         
         setUI()
         
@@ -56,10 +58,15 @@ class AddViewController: UIViewController {
             purchaseDateTextField.text = "\(addDateFormatter.string(from: dateFormatter.date(from: receipt.purchaseDate ?? "") ?? Date()))"
             purchaseAmountTextField.text = "\(receipt.amount)"
             addReceiptButton.setTitle("Update Receipt", for: .normal)
+            categoryPicker.selectRow(Int(receipt.categoryId), inComponent: 0, animated: true)
             if let data = receipt.image {
                 receiptImageView.image = UIImage(data: data)
             }
         }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
     
     func setUI() {
@@ -80,11 +87,13 @@ class AddViewController: UIViewController {
         guard let receiptController = receiptController, let merchant = merchantTextField.text,
             let amountString = purchaseAmountTextField.text, let amount = Double(amountString) else { return }
         
+         let categoryInt = Int16(categoryPicker.selectedRow(inComponent: 0))
+        
         if let receipt = receipt {
             if let image = receiptImageView.image, let imageData = image.pngData() {
-                receiptController.update(receipt: receipt, purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: 1, image: imageData)
+                receiptController.update(receipt: receipt, purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: categoryInt, image: imageData)
             } else {
-                receiptController.update(receipt: receipt, purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: 1)
+                receiptController.update(receipt: receipt, purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: categoryInt)
             }
         } else {
             if let image = receiptImageView.image, let imageData = image.pngData() {
@@ -109,8 +118,20 @@ class AddViewController: UIViewController {
 
 }
 
-extension AddViewController: ImagePickerDelegate {
+extension AddViewController: ImagePickerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     func didSelect(image: UIImage?) {
         self.receiptImageView.image = image
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return sections.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return sections[row]
     }
 }

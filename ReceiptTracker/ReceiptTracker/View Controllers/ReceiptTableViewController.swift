@@ -49,23 +49,6 @@ class ReceiptTableViewController: UITableViewController, NSFetchedResultsControl
         view.backgroundColor = .background
         tableView.backgroundColor = .background
     }
-    
-    func getSectionName(section: Int) -> String {
-        switch section {
-        case 1:
-            return "Personal Shopping"
-        case 2:
-            return "Groceries"
-        case 3:
-            return "Random"
-        case 4:
-            return "Other"
-        case 5:
-            return "Options"
-        default:
-            return ""
-        }
-    }
 
     // MARK: - Table view data source
     
@@ -76,7 +59,7 @@ class ReceiptTableViewController: UITableViewController, NSFetchedResultsControl
         returnedView.backgroundColor = .sectionHeader
         
         if let section = Int(fetchedResultsController.sections?[section].name ?? "0") {
-            label.text = getSectionName(section: section)
+            label.text = sections[section]
         } else {
             label.text = ""
         }

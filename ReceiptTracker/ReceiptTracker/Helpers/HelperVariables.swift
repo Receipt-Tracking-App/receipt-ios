@@ -13,3 +13,5 @@ var dateFormatter: DateFormatter {
     formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
     return formatter
 }
+
+let sections = ["Personal Shopping", "Groceries", "Random", "Other", ""]

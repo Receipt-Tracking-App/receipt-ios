@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0E3555D3233BCD6400406DA9 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3555D2233BCD6400406DA9 /* DateFormatter.swift */; };
+		0E3555D3233BCD6400406DA9 /* HelperVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3555D2233BCD6400406DA9 /* HelperVariables.swift */; };
 		0E3555D7233BFF2600406DA9 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3555D6233BFF2600406DA9 /* Colors.swift */; };
 		0E50791123382023003CDFDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50791023382023003CDFDB /* AppDelegate.swift */; };
 		0E50791623382023003CDFDB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E50791423382023003CDFDB /* Main.storyboard */; };
@@ -37,7 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0E3555D2233BCD6400406DA9 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		0E3555D2233BCD6400406DA9 /* HelperVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperVariables.swift; sourceTree = "<group>"; };
 		0E3555D5233BCF3100406DA9 /* ReceiptCoreData 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ReceiptCoreData 2.xcdatamodel"; sourceTree = "<group>"; };
 		0E3555D6233BFF2600406DA9 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		0E50790D23382023003CDFDB /* ReceiptTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReceiptTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,7 +103,7 @@
 		0E3555D4233BCE2E00406DA9 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				0E3555D2233BCD6400406DA9 /* DateFormatter.swift */,
+				0E3555D2233BCD6400406DA9 /* HelperVariables.swift */,
 				0E3555D6233BFF2600406DA9 /* Colors.swift */,
 				0E653CB1233C4AE2007905AC /* ImagePicker.swift */,
 			);
@@ -337,7 +337,7 @@
 				634C546D233948B00054183B /* Receipt+Convenience.swift in Sources */,
 				634C54602339450A0054183B /* ReceiptController.swift in Sources */,
 				634C545B233944920054183B /* AddViewController.swift in Sources */,
-				0E3555D3233BCD6400406DA9 /* DateFormatter.swift in Sources */,
+				0E3555D3233BCD6400406DA9 /* HelperVariables.swift in Sources */,
 				634C5474233953940054183B /* CreateAccountViewController.swift in Sources */,
 				0E50793D23396733003CDFDB /* UserRepresentation.swift in Sources */,
 				634C546F233948CF0054183B /* ReceiptRepresentation.swift in Sources */,

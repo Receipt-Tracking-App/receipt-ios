@@ -16,6 +16,7 @@ enum NetworkError: Error {
     case noData
     case badDecode
     case noAuth
+    case invalidInput
 }
 
 enum LoginType: String {
@@ -56,9 +57,15 @@ class UserController {
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
-                print("Status code returned: \(response.statusCode)")
-                completion(.badResponse)
-                return
+                if response.statusCode == 400 {
+                    print("Status code \(response.statusCode). Username/password/email taken")
+                    completion(.invalidInput)
+                    return
+                } else {
+                    print("Status code returned: \(response.statusCode)")
+                    completion(.badResponse)
+                    return
+                }
             }
             
             if let error = error {
@@ -66,8 +73,24 @@ class UserController {
                 completion(.otherError(error))
                 return
             }
+            
+            guard let data = data else {
+                completion(.noData)
+                return
+            }
+            
+            do {
+                self.bearer = try JSONDecoder().decode(Token.self, from: data)
+                if let bearer = self.bearer {
+                    self.user?.identifier = bearer.userId
+                }
+                
+            } catch {
+                completion(.badDecode)
+                return
+            }
             completion(nil)
-            }.resume()
+        }.resume()
     }
     
     func login(with userLogin: UserLogin, completion: @escaping (NetworkError?) -> Void) {
