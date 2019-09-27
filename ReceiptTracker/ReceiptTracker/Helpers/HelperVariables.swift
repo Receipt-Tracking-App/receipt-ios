@@ -14,4 +14,4 @@ var dateFormatter: DateFormatter {
     return formatter
 }
 
-let sections = ["Personal Shopping", "Groceries", "Random", "Other", ""]
+let sections = ["Auto", "Business Services", "Education", "Entertainment", "Financial", "Health & Fitness", "Home", "Personal Care", "Pets", "Shopping", "Travel", "Uncategorized", "Utilities"]

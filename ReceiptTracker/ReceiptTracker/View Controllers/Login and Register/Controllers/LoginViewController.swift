@@ -32,10 +32,9 @@ class LoginViewController: UIViewController {
             if let error = error {
                 NSLog("Unable to log in: \(error)")
                 
-                let alert = UIAlertController(title: "Unable to log in", message: "Incorrect username and/or password. Please try again.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                
                 DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Unable to log in", message: "Incorrect username and/or password. Please try again.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                 }
 

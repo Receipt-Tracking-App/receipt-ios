@@ -91,15 +91,15 @@ class AddViewController: UIViewController {
         
         if let receipt = receipt {
             if let image = receiptImageView.image, let imageData = image.pngData() {
-                receiptController.update(receipt: receipt, purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: categoryInt, image: imageData)
+                receiptController.update(receipt: receipt, purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, category: ReceiptCategory(name: "", id: categoryInt), image: imageData)
             } else {
-                receiptController.update(receipt: receipt, purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: categoryInt)
+                receiptController.update(receipt: receipt, purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, category: ReceiptCategory(name: "", id: categoryInt))
             }
         } else {
             if let image = receiptImageView.image, let imageData = image.pngData() {
-                receiptController.createReceipt(purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, category: ReceiptCategory(name: "", id: 1), image: imageData)
+                receiptController.createReceipt(purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, category: ReceiptCategory(name: "", id: categoryInt), image: imageData)
             } else {
-                receiptController.createReceipt(purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, category: ReceiptCategory(name: "", id: 1))
+                receiptController.createReceipt(purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, category: ReceiptCategory(name: "", id: categoryInt))
             }
         }
         navigationController?.popViewController(animated: true)

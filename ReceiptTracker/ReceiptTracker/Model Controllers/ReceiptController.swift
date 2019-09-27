@@ -25,19 +25,20 @@ class ReceiptController {
 
     func createReceipt(purchaseDate: Date, merchant: String, amount: Double, notes: String?, tagName: String?, tagDescription: String?, category: ReceiptCategory, image: Data? = nil, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         let receipt = Receipt(purchaseDate: purchaseDate, merchant: merchant, amount: amount, notes: notes, tagName: tagName, tagDescription: tagDescription, category: category, createdAt: Date(), updatedAt: Date(), image: image, context: context)
+        receipt.categoryId = category.id
 
         post(receipt: receipt)
         CoreDataStack.shared.save()
     }
 
-    func update(receipt: Receipt, purchaseDate: Date, merchant: String, amount: Double, notes: String?, tagName: String?, tagDescription: String?, categoryId: Int16, image: Data? = nil) {
+    func update(receipt: Receipt, purchaseDate: Date, merchant: String, amount: Double, notes: String?, tagName: String?, tagDescription: String?, category: ReceiptCategory, image: Data? = nil) {
         receipt.purchaseDate = dateFormatter.string(from: purchaseDate)
         receipt.merchant = merchant
         receipt.amount = amount
         receipt.notes = notes
         receipt.tagName = tagName
         receipt.tagDescription = tagDescription
-        receipt.categoryId = categoryId
+        receipt.category = NSOrderedSet(array: [category])
         receipt.image = image
         receipt.updatedAt = dateFormatter.string(from: Date())
 
@@ -158,6 +159,27 @@ class ReceiptController {
     }
 
     private func updateReceipts(with representations: [GetReceipt]) {
+        let upperBound = representations.count-1
+        
+        if upperBound >= 0 {
+            for i in 0...upperBound {
+                if let receipt = self.fetchSingleReceiptFromPersistentStore(identifier: representations[i].identifier, context: CoreDataStack.shared.mainContext) {
+                    
+                    if receipt.purchaseDate != representations[i].purchaseDate ||
+                        receipt.merchant != representations[i].merchant ||
+                        receipt.amount != Double(representations[i].amount) ||
+                        receipt.notes != representations[i].notes ||
+                        receipt.createdAt != representations[i].createdAt ||
+                        receipt.updatedAt != representations[i].updatedAt ||
+                        (receipt.category?[0] as? ReceiptCategory)?.id != representations[i].categories[0].mainCategoryId {
+                        self.update(receipt: receipt, with: representations[i])
+                    }
+                } else {
+                    self.createReceipt(purchaseDate: dateFormatter.date(from: representations[i].purchaseDate) ?? Date(), merchant: representations[i].merchant, amount: Double(representations[i].amount) ?? 0.0, notes: representations[i].notes, tagName: nil, tagDescription: nil, category: ReceiptCategory(name: "", id: representations[i].categories[0].mainCategoryId))
+                }
+            }
+        }
+        
         let identifiersToFetch = representations.compactMap({ $0.identifier })
         
         let representationsByID = Dictionary(uniqueKeysWithValues: zip(identifiersToFetch, representations))
@@ -187,6 +209,26 @@ class ReceiptController {
             }
             CoreDataStack.shared.save(context: context)
         }
+    }
+    
+    func fetchSingleReceiptFromPersistentStore(identifier: Int32, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) -> Receipt? {
+        var tempReceipt: Receipt?
+        
+        let fetchRequest: NSFetchRequest<Receipt> = Receipt.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "identifier == %@", identifier)
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "identifier", ascending: true)]
+        
+        let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.mainContext, sectionNameKeyPath: "identifier", cacheName: nil)
+        
+        do {
+            try frc.performFetch()
+            
+            tempReceipt = frc.object(at: IndexPath(row: 0, section: 0))
+        } catch {
+            NSLog("Error performing fetch for frc: \(error)")
+        }
+        
+        return tempReceipt
     }
 
     private func update(receipt: Receipt, with receiptRepresentation: GetReceipt) {
