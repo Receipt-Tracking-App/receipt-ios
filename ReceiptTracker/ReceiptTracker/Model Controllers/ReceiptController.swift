@@ -23,8 +23,8 @@ class ReceiptController {
         fetchReceiptsFromServer()
     }
 
-    func createReceipt(purchaseDate: Date, merchant: String, amount: Double, notes: String?, tagName: String?, tagDescription: String?, categoryId: Int16, image: Data? = nil, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
-        let receipt = Receipt(purchaseDate: purchaseDate, merchant: merchant, amount: amount, notes: notes, tagName: tagName, tagDescription: tagDescription, categoryId: categoryId, createdAt: Date(), updatedAt: Date(), image: image, context: context)
+    func createReceipt(purchaseDate: Date, merchant: String, amount: Double, notes: String?, tagName: String?, tagDescription: String?, category: ReceiptCategory, image: Data? = nil, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
+        let receipt = Receipt(purchaseDate: purchaseDate, merchant: merchant, amount: amount, notes: notes, tagName: tagName, tagDescription: tagDescription, category: category, createdAt: Date(), updatedAt: Date(), image: image, context: context)
 
         post(receipt: receipt)
         CoreDataStack.shared.save()

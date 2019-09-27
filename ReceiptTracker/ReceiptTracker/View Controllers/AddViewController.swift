@@ -88,9 +88,9 @@ class AddViewController: UIViewController {
             }
         } else {
             if let image = receiptImageView.image, let imageData = image.pngData() {
-                receiptController.createReceipt(purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: 1, image: imageData); #warning("Finish implementation in code and storyboard")
+                receiptController.createReceipt(purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, category: ReceiptCategory(name: "", id: 1), image: imageData)
             } else {
-                receiptController.createReceipt(purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, categoryId: 1); #warning("Finish implementation in code and storyboard")
+                receiptController.createReceipt(purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, category: ReceiptCategory(name: "", id: 1))
             }
         }
         navigationController?.popViewController(animated: true)

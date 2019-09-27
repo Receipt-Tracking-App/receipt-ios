@@ -10,8 +10,10 @@ import Foundation
 import CoreData
 
 extension Receipt {
-    convenience init(purchaseDate: Date, merchant: String, amount: Double, notes: String?, tagName: String?, tagDescription: String?, categoryId: Int16, createdAt: Date, updatedAt: Date, image: Data? = nil, context: NSManagedObjectContext) {
+    convenience init(purchaseDate: Date, merchant: String, amount: Double, notes: String?, tagName: String?, tagDescription: String?, category: ReceiptCategory, createdAt: Date, updatedAt: Date, image: Data? = nil, context: NSManagedObjectContext) {
         self.init(context: context)
+        
+      
         
         self.identifier = identifier
         self.purchaseDate = dateFormatter.string(from: purchaseDate)
@@ -20,7 +22,7 @@ extension Receipt {
         self.notes = notes
         self.tagName = tagName
         self.tagDescription = tagDescription
-        self.categoryId = categoryId
+        self.category = NSOrderedSet(array: [category])
         self.createdAt = dateFormatter.string(from: createdAt)
         self.updatedAt = dateFormatter.string(from: updatedAt)
         self.image = image
