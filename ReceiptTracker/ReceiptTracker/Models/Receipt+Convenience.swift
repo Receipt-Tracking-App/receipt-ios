@@ -52,6 +52,6 @@ extension Receipt {
     
     var postReceipt: PostReceipt? {
         guard let purchaseDate = purchaseDate, let merchant = merchant else { return nil }
-        return PostReceipt(purchaseDate: purchaseDate, merchant: merchant, amount: amount, notes: notes, tagName: tagName, tagDescription: tagDescription, categoryId: categoryId)
+        return PostReceipt(purchaseDate: purchaseDate, merchant: merchant, amount: "\(amount)", notes: notes, categoryId: "\(categoryId)")
     }
 }

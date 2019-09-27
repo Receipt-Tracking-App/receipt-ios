@@ -57,15 +57,9 @@ class UserController {
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
-                if response.statusCode == 400 {
-                    print("Status code \(response.statusCode). Username/password/email taken")
-                    completion(.invalidInput)
-                    return
-                } else {
-                    print("Status code returned: \(response.statusCode)")
-                    completion(.badResponse)
-                    return
-                }
+                print("Status code \(response.statusCode). Username/password/email taken")
+                completion(.invalidInput)
+                return
             }
             
             if let error = error {

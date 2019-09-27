@@ -76,11 +76,31 @@ class ReceiptController {
             return
         }
 
-        URLSession.shared.dataTask(with: request) { (data, _, error) in
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                print("Status code \(response.statusCode)")
+                completion(nil)
+                return
+            }
+            
             if let error = error {
                 NSLog("Error POSTing receipt to server: \(error)")
                 completion(error)
                 return
+            }
+            
+            guard let data = data else {
+                NSLog("No data returned on line: \(#line)")
+                completion(nil)
+                return
+            }
+            
+            do {
+                let id = try JSONDecoder().decode(ReceiptResponceRep.self, from: data)
+                receipt.identifier = id.receiptId
+            } catch {
+                NSLog("Unable to decode from JSON on line \(#line) with error: \(error)")
             }
             completion(nil)
         }.resume()
@@ -130,7 +150,14 @@ class ReceiptController {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
 
-        URLSession.shared.dataTask(with: request) { (data, _, error) in
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                print("Status code \(response.statusCode)")
+                completion(nil)
+                return
+            }
+            
             if let error = error {
                 NSLog("Error fetching receipts from server: \(error)")
                 completion(error)
@@ -163,7 +190,7 @@ class ReceiptController {
         
         if upperBound >= 0 {
             for i in 0...upperBound {
-                if let receipt = self.fetchSingleReceiptFromPersistentStore(identifier: representations[i].identifier, context: CoreDataStack.shared.mainContext) {
+                if let receipt = self.fetchSingleReceiptFromPersistentStore(receiptID: representations[i].identifier) {
                     
                     if receipt.purchaseDate != representations[i].purchaseDate ||
                         receipt.merchant != representations[i].merchant ||
@@ -211,24 +238,20 @@ class ReceiptController {
         }
     }
     
-    func fetchSingleReceiptFromPersistentStore(identifier: Int32, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) -> Receipt? {
-        var tempReceipt: Receipt?
-        
+    private func fetchSingleReceiptFromPersistentStore(receiptID: Int32, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) -> Receipt? {
         let fetchRequest: NSFetchRequest<Receipt> = Receipt.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "identifier == %@", identifier)
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "identifier", ascending: true)]
+        fetchRequest.predicate = NSPredicate(format: "identifier == %ld", receiptID)
         
-        let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.mainContext, sectionNameKeyPath: "identifier", cacheName: nil)
+        var receipt: Receipt?
         
-        do {
-            try frc.performFetch()
-            
-            tempReceipt = frc.object(at: IndexPath(row: 0, section: 0))
-        } catch {
-            NSLog("Error performing fetch for frc: \(error)")
+        context.performAndWait {
+            do {
+                receipt = try context.fetch(fetchRequest).first
+            } catch {
+                NSLog("Error fetching item with identifier: \(receiptID). Error: \(error)")
+            }
         }
-        
-        return tempReceipt
+        return receipt
     }
 
     private func update(receipt: Receipt, with receiptRepresentation: GetReceipt) {

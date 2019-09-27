@@ -37,11 +37,9 @@ struct ReceiptRepresentation: Codable, Equatable {
 struct PostReceipt: Codable {
     var purchaseDate: String
     var merchant: String
-    var amount: Double
+    var amount: String
     var notes: String?
-    var tagName: String?
-    var tagDescription: String?
-    var categoryId: Int16
+    var categoryId: String
 }
 
 struct ReceiptInfo: Codable {
@@ -84,4 +82,8 @@ struct GetCategory: Codable {
     
     var name: String
     var mainCategoryId: Int16
+}
+
+struct ReceiptResponceRep: Codable {
+    var receiptId: Int32
 }
