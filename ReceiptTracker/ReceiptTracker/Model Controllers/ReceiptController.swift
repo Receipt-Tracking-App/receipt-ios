@@ -128,7 +128,7 @@ class ReceiptController {
         URLSession.shared.dataTask(with: request) { (_, response, error) in
             if let response = response as? HTTPURLResponse,
                 response.statusCode != 200 {
-                print("Status code from putUpdate\(response.statusCode)")
+                print("Status code from putUpdate \(response.statusCode)")
                 completion(nil)
                 return
             }
@@ -153,10 +153,17 @@ class ReceiptController {
         }
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.delete.rawValue
-        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
 
-        URLSession.shared.dataTask(with: request) { (data, _, error) in
+        URLSession.shared.dataTask(with: request) { (_, response, error) in
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                print("Status code from deleteReceiptFromServer \(response.statusCode)")
+                completion(nil)
+                return
+            }
+            
             if let error = error {
                 NSLog("Error deleting receipt from server: \(error)")
                 completion(error)

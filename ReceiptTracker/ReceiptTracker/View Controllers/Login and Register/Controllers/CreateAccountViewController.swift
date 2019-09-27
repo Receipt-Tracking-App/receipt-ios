@@ -63,6 +63,9 @@ class CreateAccountViewController: UIViewController {
         }
     }
     
+    @IBAction func backToLoginTapped(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
     /*
     // MARK: - Navigation
 

@@ -12,11 +12,12 @@ class AddViewController: UIViewController {
     
     @IBOutlet var receiptImageView: UIImageView!
     @IBOutlet weak var merchantTextField: UITextField!
-    @IBOutlet weak var purchaseDateTextField: UITextField!
+    @IBOutlet weak var purchaseDatePicker: UIDatePicker!
     @IBOutlet weak var purchaseAmountTextField: UITextField!
     @IBOutlet weak var addReceiptButton: UIButton!
     @IBOutlet weak var receiptDetailsLabel: UILabel!
     @IBOutlet weak var categoryPicker: UIPickerView!
+    @IBOutlet weak var notesTextView: UITextView!
     
     var imagePicker: ImagePicker!
     
@@ -37,7 +38,7 @@ class AddViewController: UIViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yyyy"
         return formatter
-    }; #warning("Delete after implementing UIDatePicker")
+    }
     
     var receiptController: ReceiptController?
     var receipt: Receipt?
@@ -55,9 +56,10 @@ class AddViewController: UIViewController {
         if let receipt = receipt {
             title = receipt.merchant
             merchantTextField.text = receipt.merchant
-            purchaseDateTextField.text = "\(addDateFormatter.string(from: dateFormatter.date(from: receipt.purchaseDate ?? "") ?? Date()))"
+            purchaseDatePicker.date = dateFormatter.date(from: receipt.purchaseDate ?? "") ?? Date()
             purchaseAmountTextField.text = "\(receipt.amount)"
             addReceiptButton.setTitle("Update Receipt", for: .normal)
+            notesTextView.text = receipt.notes
             categoryPicker.selectRow(Int(receipt.categoryId), inComponent: 0, animated: true)
             if let data = receipt.image {
                 receiptImageView.image = UIImage(data: data)
@@ -91,15 +93,15 @@ class AddViewController: UIViewController {
         
         if let receipt = receipt {
             if let image = receiptImageView.image, let imageData = image.pngData() {
-                receiptController.update(receipt: receipt, purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, category: ReceiptCategory(name: "", id: categoryInt), image: imageData)
+                receiptController.update(receipt: receipt, purchaseDate: purchaseDatePicker.date, merchant: merchant, amount: amount, notes: notesTextView.text, tagName: nil, tagDescription: nil, category: ReceiptCategory(name: "", id: categoryInt), image: imageData)
             } else {
-                receiptController.update(receipt: receipt, purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, category: ReceiptCategory(name: "", id: categoryInt))
+                receiptController.update(receipt: receipt, purchaseDate: purchaseDatePicker.date, merchant: merchant, amount: amount, notes: notesTextView.text, tagName: nil, tagDescription: nil, category: ReceiptCategory(name: "", id: categoryInt))
             }
         } else {
             if let image = receiptImageView.image, let imageData = image.pngData() {
-                receiptController.createReceipt(purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, category: ReceiptCategory(name: "", id: categoryInt), image: imageData)
+                receiptController.createReceipt(purchaseDate: purchaseDatePicker.date, merchant: merchant, amount: amount, notes: notesTextView.text, tagName: nil, tagDescription: nil, category: ReceiptCategory(name: "", id: categoryInt), image: imageData)
             } else {
-                receiptController.createReceipt(purchaseDate: Date(), merchant: merchant, amount: amount, notes: nil, tagName: nil, tagDescription: nil, category: ReceiptCategory(name: "", id: categoryInt))
+                receiptController.createReceipt(purchaseDate: purchaseDatePicker.date, merchant: merchant, amount: amount, notes: notesTextView.text, tagName: nil, tagDescription: nil, category: ReceiptCategory(name: "", id: categoryInt))
             }
         }
         navigationController?.popViewController(animated: true)
